@@ -22,6 +22,7 @@ const SOCLE = [
   'js/feuille.js',
   'js/taux.js',
   'js/lieu.js',
+  'js/calendrier.js',
   'js/views/accueil.js',
   'js/views/jours.js',
   'js/views/lieux.js',

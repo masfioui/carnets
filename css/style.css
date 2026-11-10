@@ -327,6 +327,12 @@ svg { display: block; flex: none; }
 .ajout { display: flex; gap: 8px; margin-top: 12px; }
 .ajout .champ { flex: 1; min-height: 48px; }
 
+/* ---------- Rappels (dates limites) ---------- */
+.echeance { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 650; color: var(--doux); margin-top: 2px; }
+.echeance.urgent { color: var(--alerte); }
+.echeance.retard { color: var(--danger); }
+.rappels { margin-bottom: 16px; }
+
 /* ---------- Toast ---------- */
 #toast {
   position: fixed; left: 50%; bottom: calc(var(--bas) + 14px); transform: translate(-50%, 20px);

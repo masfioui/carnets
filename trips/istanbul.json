@@ -671,20 +671,20 @@
 
   "checklist": {
     "avant": [
-      { "id": "papiers", "texte": "Vérifier la validité du passeport ou de la carte d'identité", "note": "Règles d'entrée à confirmer sur France Diplomatie." },
-      { "id": "croisiere", "texte": "Réserver la croisière dîner du mercredi 20" },
-      { "id": "billets", "texte": "Regarder les billets en ligne pour Sainte-Sophie, Topkapi et Dolmabahçe" },
-      { "id": "prix", "texte": "Demander à Claude de revérifier les prix début janvier", "note": "Les tarifs turcs augmentent souvent au 1er janvier." },
-      { "id": "aeroport", "texte": "Choisir le trajet Sabiha Gökçen - hôtel : métro ou taxi à quatre", "note": "Demande aussi à l'hôtel le prix de sa navette." },
-      { "id": "consulat", "texte": "Noter le numéro d'urgence du consulat de France" },
-      { "id": "assurance", "texte": "Vérifier l'assurance voyage et la couverture santé" },
-      { "id": "banque", "texte": "Prévenir la banque et vérifier les frais à l'étranger" },
-      { "id": "forfait", "texte": "Prévoir une eSIM ou un forfait Turquie", "note": "La Turquie est hors Union européenne : le roaming est payant." },
-      { "id": "maps", "texte": "Télécharger Istanbul hors ligne dans Google Maps" },
-      { "id": "applis", "texte": "Installer BiTaksi et ajouter ce carnet à l'écran d'accueil" },
-      { "id": "especes", "texte": "Retirer des euros en liquide à changer à Fatih" },
-      { "id": "copies", "texte": "Photographier passeport, billets et réservation d'hôtel" },
-      { "id": "checkin", "texte": "Faire l'enregistrement en ligne du vol" }
+      { "id": "papiers", "echeance": "2026-12-01", "texte": "Vérifier la validité du passeport ou de la carte d'identité", "note": "Règles d'entrée à confirmer sur France Diplomatie." },
+      { "id": "croisiere", "echeance": "2027-01-08", "texte": "Réserver la croisière dîner du mercredi 20" },
+      { "id": "billets", "echeance": "2027-01-12", "texte": "Regarder les billets en ligne pour Sainte-Sophie, Topkapi et Dolmabahçe" },
+      { "id": "prix", "echeance": "2027-01-06", "texte": "Demander à Claude de revérifier les prix début janvier", "note": "Les tarifs turcs augmentent souvent au 1er janvier." },
+      { "id": "aeroport", "echeance": "2027-01-14", "texte": "Choisir le trajet Sabiha Gökçen - hôtel : métro ou taxi à quatre", "note": "Demande aussi à l'hôtel le prix de sa navette." },
+      { "id": "consulat", "echeance": "2027-01-14", "texte": "Noter le numéro d'urgence du consulat de France" },
+      { "id": "assurance", "echeance": "2027-01-05", "texte": "Vérifier l'assurance voyage et la couverture santé" },
+      { "id": "banque", "echeance": "2027-01-10", "texte": "Prévenir la banque et vérifier les frais à l'étranger" },
+      { "id": "forfait", "echeance": "2027-01-14", "texte": "Prévoir une eSIM ou un forfait Turquie", "note": "La Turquie est hors Union européenne : le roaming est payant." },
+      { "id": "maps", "echeance": "2027-01-15", "texte": "Télécharger Istanbul hors ligne dans Google Maps" },
+      { "id": "applis", "echeance": "2027-01-15", "texte": "Installer BiTaksi et ajouter ce carnet à l'écran d'accueil" },
+      { "id": "especes", "echeance": "2027-01-15", "texte": "Retirer des euros en liquide à changer à Fatih" },
+      { "id": "copies", "echeance": "2027-01-15", "texte": "Photographier passeport, billets et réservation d'hôtel" },
+      { "id": "checkin", "echeance": "2027-01-16", "texte": "Faire l'enregistrement en ligne du vol" }
     ],
     "valise": [
       { "id": "veste", "texte": "Veste imperméable et chaude" },

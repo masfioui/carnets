@@ -43,6 +43,23 @@ export function prixCourt(prix, symboleLocal) {
   return approx + (prix.devise === 'EUR' ? euros(prix.montant) : `${nombre(prix.montant)} ${symboleLocal}`);
 }
 
+// Rappels : les éléments de la check-list "avant" qui ont une date limite
+// ("echeance") et ne sont pas encore cochés, du plus urgent au moins urgent.
+export function rappelsEnAttente(voyage, coches) {
+  return (voyage.checklist?.avant ?? [])
+    .filter((i) => i.echeance && !coches['avant:' + i.id])
+    .sort((a, b) => a.echeance.localeCompare(b.echeance));
+}
+
+// Texte et niveau d'urgence d'une date limite : "retard", "urgent" (7 jours ou moins) ou "normal".
+export function delai(echeance) {
+  const n = joursEntre(dateISO(), echeance);
+  if (n < 0) return { texte: `En retard de ${-n} j`, etat: 'retard' };
+  if (n === 0) return { texte: 'À faire aujourd’hui', etat: 'urgent' };
+  if (n <= 7) return { texte: `Dans ${n} jour${n > 1 ? 's' : ''}`, etat: 'urgent' };
+  return { texte: `Avant le ${fmtDate(echeance, { day: 'numeric', month: 'short' })}`, etat: 'normal' };
+}
+
 // Les trois moments d'une journée, dans l'ordre d'affichage.
 export const MOMENTS = [['matin', 'Matin'], ['apresMidi', 'Après-midi'], ['soir', 'Soir']];
 

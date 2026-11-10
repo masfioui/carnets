@@ -1,7 +1,7 @@
 // Onglet Jours : le planning jour par jour. S'ouvre sur le jour en cours
 // pendant le voyage, sinon sur le premier jour.
 
-import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
+import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
 import { icon } from '../icons.js';
 
 function bandeau(voyage, etat) {
@@ -18,6 +18,33 @@ function bandeau(voyage, etat) {
     texte = 'Voyage terminé';
   }
   return `<div class="bandeau"><span>${texte}</span><span class="chiffres">${global.faites}/${global.total} faits</span></div>`;
+}
+
+// Avant le départ seulement : les trois rappels les plus urgents, cochables ici.
+// Une fois sur place, la carte disparaît pour laisser toute la place au planning.
+function carteRappels(voyage, etat) {
+  if (dateISO() >= voyage.dates.debut) return '';
+  const rappels = rappelsEnAttente(voyage, etat.coches);
+  if (!rappels.length) return '';
+  return `
+    <div class="carte rappels">
+      <div class="section" style="margin:0 0 4px">
+        <span class="sur-titre">À faire avant le départ</span>
+        <span class="doux petit chiffres">${rappels.length} restant${rappels.length > 1 ? 's' : ''}</span>
+      </div>
+      ${rappels.slice(0, 3).map((r) => {
+        const d = delai(r.echeance);
+        return `
+          <div class="item">
+            <button class="coche" data-action="cocher" data-cle="avant:${esc(r.id)}" aria-pressed="false" aria-label="${esc(r.texte)}"><span>${icon('check', 16)}</span></button>
+            <div class="item-corps">
+              <div class="item-texte">${esc(r.texte)}</div>
+              <div class="echeance ${d.etat}">${d.texte}</div>
+            </div>
+          </div>`;
+      }).join('')}
+      <button class="btn plein" style="margin-top:10px" data-action="calendrier">${icon('calendar', 20)} Me le rappeler dans mon calendrier</button>
+    </div>`;
 }
 
 function carteActivite(act, voyage, etat, suivante) {
@@ -85,6 +112,7 @@ export function rendre(ctx) {
 
   return `
     ${bandeau(voyage, etat)}
+    ${carteRappels(voyage, etat)}
     <div class="jours">${selecteur}</div>
     <div class="jour-tete">
       <div class="sur-titre">${fmtDate(jour.date, { weekday: 'long', day: 'numeric', month: 'long' })}</div>
@@ -110,7 +138,8 @@ export const actions = {
     window.scrollTo(0, 0);
   },
   cocher(el, ctx) {
-    const cle = 'act:' + el.dataset.id;
+    // Une activité porte data-id, un rappel porte directement sa clé complète (data-cle).
+    const cle = el.dataset.cle ?? 'act:' + el.dataset.id;
     if (ctx.etat.coches[cle]) delete ctx.etat.coches[cle];
     else ctx.etat.coches[cle] = true;
     ctx.sauver();

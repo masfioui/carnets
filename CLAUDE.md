@@ -18,6 +18,7 @@ js/app.js               chargement, navigation par #, clics (data-action)
 js/store.js             localStorage
 js/taux.js              taux de change (API Frankfurter + saisie manuelle)
 js/lieu.js              fiche d'un lieu
+js/calendrier.js        export des rappels en fichier .ics (pas de notifications push : pas de serveur)
 js/feuille.js           panneau du bas, toast, saisie d'un nombre
 js/views/*.js           un fichier par écran : rendre(ctx), monter(racine, ctx), actions
 js/validate.js          validateur du schéma
@@ -69,7 +70,8 @@ Le validateur `js/validate.js` fait foi. Champs principaux :
   - activité : `{id, lieu? | titre?, heure?, duree?, trajet?, note?, optionnel?}`. `lieu` renvoie à un `id` de `lieux`. Les trois listes existent toujours, vides si besoin.
 - `phrases[] {cat, fr, local, prononciation}` (au moins 10), `plats[] {id, nom, description, ou}` (au moins 5).
 - `arnaques[] {titre, texte, parade}`, `urgences[] {nom, numero | null, maps?, note, source, statut}`.
-- `checklist {avant[], valise[]}` : éléments `{id, texte, note?}`.
+- `checklist {avant[], valise[]}` : éléments `{id, texte, note?, echeance?}`.
+  - `echeance` (date limite, AAAA-MM-JJ, au plus tard le jour du départ) transforme l'élément en **rappel** : il remonte sur l'accueil et l'onglet Jours quand il reste 7 jours ou moins, et part dans le fichier calendrier (`js/calendrier.js`). Mettre une échéance à tout ce qui se réserve ou se prépare à l'avance (réservations, papiers, revérification des prix, enregistrement du vol), avec des dates réalistes par rapport au départ.
 - `budget {devise: "EUR", prevu, categories[]}`.
 
 ## Service worker

@@ -1,6 +1,6 @@
 // Accueil : la liste des carnets, le bouton "Nouveau voyage" et la sauvegarde.
 
-import { esc, dateISO, joursEntre, periode, toutesActivites, avancement } from '../util.js';
+import { esc, dateISO, joursEntre, periode, toutesActivites, avancement, rappelsEnAttente, delai } from '../util.js';
 import { icon } from '../icons.js';
 import { ouvrirFeuille, toast } from '../feuille.js';
 
@@ -12,6 +12,15 @@ function compteARebours(debut, fin) {
   }
   if (aujourdhui <= fin) return `Jour ${joursEntre(debut, aujourdhui) + 1} sur ${joursEntre(debut, fin) + 1}`;
   return 'Terminé';
+}
+
+// Ligne d'alerte sur la carte du voyage : seulement s'il y a quelque chose à faire sous 7 jours.
+function rappelUrgent(voyage, coches) {
+  if (dateISO() > voyage.dates.fin) return '';
+  const urgents = rappelsEnAttente(voyage, coches).filter((r) => delai(r.echeance).etat !== 'normal');
+  if (!urgents.length) return '';
+  const retard = urgents.some((r) => delai(r.echeance).etat === 'retard');
+  return `<div class="echeance ${retard ? 'retard' : 'urgent'}" style="margin-top:8px">${icon('alert', 15)} ${urgents.length} chose${urgents.length > 1 ? 's' : ''} à faire cette semaine</div>`;
 }
 
 export function rendre(ctx) {
@@ -27,6 +36,7 @@ export function rendre(ctx) {
           <span class="compte">${compteARebours(fiche.debut, fiche.fin)}</span>
         </div>
         <div class="doux petit">${periode(fiche.debut, fiche.fin)}</div>
+        ${rappelUrgent(voyage, ctx.store.etat(fiche.id).coches)}
         <div class="voyage-pied">
           <div class="barre"><i style="width:${total ? (faites / total) * 100 : 0}%"></i></div>
           <span class="doux petit chiffres">${faites}/${total} faits</span>

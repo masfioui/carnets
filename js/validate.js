@@ -120,7 +120,15 @@ export function validerVoyage(v, fiche) {
     const liste = v.checklist?.[cle];
     exiger(Array.isArray(liste) && liste.length > 0, `checklist.${cle} : liste vide`);
     uniques((liste ?? []).map((i) => i.id), `checklist.${cle}`);
-    for (const i of liste ?? []) exiger(texte(i.texte), `checklist.${cle} « ${i.id} » : texte manquant`);
+    for (const i of liste ?? []) {
+      exiger(texte(i.texte), `checklist.${cle} « ${i.id} » : texte manquant`);
+      // echeance (facultatif) = date limite, qui devient un rappel dans l'appli et le calendrier.
+      if (i.echeance !== undefined) {
+        exiger(DATE.test(i.echeance), `checklist.${cle} « ${i.id} » : echeance au format AAAA-MM-JJ`);
+        exiger(i.echeance <= (v.dates?.debut ?? ''), `checklist.${cle} « ${i.id} » : echeance après le départ`);
+      }
+    }
+    if (cle === 'avant' && !(liste ?? []).some((i) => i.echeance)) avertissements.push('checklist.avant : aucune echeance, donc aucun rappel');
   }
   exiger(Array.isArray(v.budget?.categories) && v.budget.categories.length > 0, 'budget.categories : liste vide');
 

@@ -1,13 +1,15 @@
 // Onglet Listes : check-list avant le départ et valise.
 // Les éléments du JSON sont fixes ; tu peux ajouter les tiens (stockés sur le téléphone).
 
-import { esc } from '../util.js';
+import { esc, delai } from '../util.js';
 import { icon } from '../icons.js';
 
 const LISTES = [['avant', 'Avant le départ'], ['valise', 'Valise']];
 
 function liste(cle, titre, voyage, etat) {
-  const fixes = voyage.checklist[cle] ?? [];
+  // Les éléments qui ont une date limite passent en premier, du plus proche au plus lointain.
+  const fixes = [...(voyage.checklist[cle] ?? [])].sort((a, b) => (a.echeance ?? '9').localeCompare(b.echeance ?? '9'));
+  const aDesRappels = fixes.some((i) => i.echeance);
   const perso = etat.perso[cle] ?? [];
   const tous = [...fixes, ...perso.map((p) => ({ ...p, perso: true }))];
   const faits = tous.filter((i) => etat.coches[`${cle}:${i.id}`]).length;
@@ -24,10 +26,12 @@ function liste(cle, titre, voyage, etat) {
             <div class="item-corps">
               <div class="item-texte">${esc(i.texte)}</div>
               ${i.note ? `<div class="doux petit">${esc(i.note)}</div>` : ''}
+              ${i.echeance && !fait ? `<div class="echeance ${delai(i.echeance).etat}">${delai(i.echeance).texte}</div>` : ''}
             </div>
             ${i.perso ? `<button class="rond" style="margin:-8px 0" data-action="retirer" data-liste="${cle}" data-id="${esc(i.id)}" aria-label="Retirer ${esc(i.texte)}">${icon('trash', 18)}</button>` : ''}
           </div>`;
       }).join('')}
+      ${aDesRappels ? `<button class="btn plein" style="margin-top:6px" data-action="calendrier">${icon('calendar', 20)} Me le rappeler dans mon calendrier</button>` : ''}
       <form class="ajout" data-liste="${cle}">
         <div class="champ"><input class="texte" name="texte" autocomplete="off" placeholder="Ajouter un élément" aria-label="Ajouter à ${titre}"></div>
         <button class="rond" style="width:48px;height:48px" type="submit" aria-label="Ajouter">${icon('plus', 20)}</button>
