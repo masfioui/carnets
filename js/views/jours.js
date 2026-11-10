@@ -1,7 +1,7 @@
 // Onglet Jours : le planning jour par jour. S'ouvre sur le jour en cours
 // pendant le voyage, sinon sur le premier jour.
 
-import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
+import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, etiquetteCategorie, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
 import { icon } from '../icons.js';
 import { toast } from '../feuille.js';
 import { feter, vibrer } from '../effets.js';
@@ -46,6 +46,7 @@ function carteRappels(voyage, etat) {
           </div>`;
       }).join('')}
       <button class="btn plein" style="margin-top:10px" data-action="calendrier">${icon('calendar', 20)} Me le rappeler dans mon calendrier</button>
+      <a class="lien-discret" href="#/v/${esc(voyage.id)}/listes">Coché par erreur ? Tout se retrouve dans Listes</a>
     </div>`;
 }
 
@@ -56,6 +57,7 @@ function carteActivite(act, voyage, etat, suivante) {
   const duree = act.duree ?? lieu?.duree;
   const prix = prixCourt(lieu?.prix, voyage.devise.symbole);
   const meta = [
+    lieu ? etiquetteCategorie(lieu.categorie) : '',
     act.heure ? `<span class="heure">${esc(act.heure)}</span>` : '',
     duree ? `<span>${esc(duree)}</span>` : '',
     prix ? `<span>${esc(prix)}</span>` : '',
@@ -144,10 +146,45 @@ export function rendre(ctx) {
     ${jour.planB ? `
       <div class="carte planb">${icon('umbrella')}
         <div><div class="sur-titre">Plan B</div><p style="margin-top:4px">${esc(jour.planB)}</p></div>
-      </div>` : ''}`;
+      </div>` : ''}
+    <button class="btn plein" style="margin-top:12px" data-action="partager">${icon('share', 20)} Envoyer ce programme aux potes</button>`;
+}
+
+// Le programme du jour en texte simple, à coller dans une conversation.
+function texteDuJour(voyage, jour) {
+  const lignes = [`${voyage.nom} · ${fmtDate(jour.date, { weekday: 'long', day: 'numeric', month: 'long' })}`, jour.titre];
+  for (const [cle, nom] of MOMENTS) {
+    const liste = jour[cle] ?? [];
+    if (!liste.length) continue;
+    lignes.push('', nom);
+    for (const act of liste) {
+      const lieu = voyage.lieux.find((l) => l.id === act.lieu);
+      const duree = act.duree ?? lieu?.duree;
+      lignes.push(`• ${act.heure ? act.heure + ' ' : ''}${act.titre ?? lieu?.nom ?? ''}${duree ? ' (' + duree + ')' : ''}${act.optionnel ? ' (optionnel)' : ''}`);
+    }
+  }
+  for (const alerte of jour.alertes ?? []) lignes.push('', 'Attention : ' + alerte);
+  if (jour.planB) lignes.push('', 'Plan B : ' + jour.planB);
+  lignes.push('', 'Le carnet complet : ' + location.origin + location.pathname);
+  return lignes.join('\n');
 }
 
 export const actions = {
+  // Ouvre la feuille de partage du téléphone (WhatsApp, Messages…). Sur un
+  // navigateur sans partage, on copie le texte dans le presse-papiers.
+  async partager(el, ctx) {
+    const jour = ctx.voyage.jours.find((j) => j.date === ctx.ui.jour) ?? ctx.voyage.jours[0];
+    const texte = texteDuJour(ctx.voyage, jour);
+    try {
+      if (navigator.share) await navigator.share({ text: texte });
+      else {
+        await navigator.clipboard.writeText(texte);
+        toast('Programme copié, colle-le dans ta conversation');
+      }
+    } catch (erreur) {
+      if (erreur.name !== 'AbortError') toast('Partage impossible sur ce navigateur');
+    }
+  },
   jour(el, ctx) {
     ctx.ui.jour = el.dataset.date;
     ctx.rendre(true); // true = avec l'animation d'entrée

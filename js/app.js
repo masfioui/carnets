@@ -10,7 +10,7 @@ import { icon } from './icons.js';
 import { esc, periode, rappelsEnAttente } from './util.js';
 import { fermerFeuille, toast } from './feuille.js';
 import { ouvrirCalendrier } from './calendrier.js';
-import { ouvrirLieu } from './lieu.js';
+import { ouvrirLieu, ouvrirChauffeur } from './lieu.js';
 import { vibrer } from './effets.js';
 import { actualiserTaux, tauxPerime } from './taux.js';
 import * as accueil from './views/accueil.js';
@@ -149,6 +149,7 @@ const actionsCommunes = {
   'fermer-feuille': () => fermerFeuille(),
   'fermer-fond': (el, c, e) => { if (e.target === el) fermerFeuille(); },
   lieu: (el, c) => ouvrirLieu(c, el.dataset.lieu),
+  chauffeur: (el, c) => ouvrirChauffeur(c, el.dataset.lieu),
   calendrier: (el, c) => {
     const rappels = rappelsEnAttente(c.voyage, c.etat.coches);
     if (!rappels.length) return toast('Aucun rappel en attente');

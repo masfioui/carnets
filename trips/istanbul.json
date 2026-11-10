@@ -25,6 +25,7 @@
     "nom": "Astro Suites",
     "adresse": "Vefa Caddesi, Fatih, 34134 Istanbul",
     "maps": "Astro Suites, Vefa Caddesi, Fatih, Istanbul",
+    "phraseTaxi": { "local": "Bu adrese gitmek istiyorum, lütfen.", "fr": "Je voudrais aller à cette adresse, s'il vous plaît." },
     "note": "Métro Vezneciler (ligne M2) à environ 7 min à pied, Süleymaniye à 3-5 min, Grand Bazar à environ 14 min. Distances tirées des fiches Expedia/Trip.com de l'hôtel, à confirmer sur place."
   },
 

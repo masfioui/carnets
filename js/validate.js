@@ -37,6 +37,11 @@ export function validerVoyage(v, fiche) {
   exiger(DATE.test(d.date ?? '') && texte(d.source), 'devise.date et devise.source requis');
   exiger(/^[a-z]{2}-[A-Z]{2}$/.test(v.langue?.code ?? ''), 'langue.code du type tr-TR');
 
+  // logement.phraseTaxi (facultatif) : la phrase affichée par "Montrer au chauffeur".
+  if (v.logement?.phraseTaxi !== undefined) {
+    exiger(texte(v.logement.phraseTaxi.local) && texte(v.logement.phraseTaxi.fr), 'logement.phraseTaxi : local et fr requis');
+  }
+
   // --- Lieux ---
   exiger(Array.isArray(v.lieux) && v.lieux.length > 0, 'lieux : liste vide');
   const idsLieux = uniques((v.lieux ?? []).map((l) => l.id), 'lieux');

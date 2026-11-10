@@ -1,7 +1,7 @@
 // Fiche détaillée d'un lieu, affichée dans la feuille du bas.
 // Utilisée par l'écran Jours et par l'écran Lieux.
 
-import { esc, mapsUrl, fmtDate, nombre, euros, photoLieu } from './util.js';
+import { esc, mapsUrl, fmtDate, nombre, euros, photoLieu, etiquetteCategorie } from './util.js';
 import { icon } from './icons.js';
 import { ouvrirFeuille } from './feuille.js';
 import { tauxCourant } from './taux.js';
@@ -49,8 +49,33 @@ export function ouvrirLieu(ctx, idLieu) {
     ${photo ? `
       <img class="photo-tete" src="${photo}" alt="${esc(lieu.nom)}">
       <div class="credit">Photo : <a href="${esc(lieu.photo.source)}" target="_blank" rel="noopener">${esc(lieu.photo.credit)}</a>, ${esc(lieu.photo.licence)}</div>` : ''}
-    <div class="sur-titre">${esc(lieu.quartier ?? '')}</div>
+    <div class="sur-titre">${etiquetteCategorie(lieu.categorie)}${lieu.quartier ? ' · ' + esc(lieu.quartier) : ''}</div>
     <h2>${esc(lieu.nom)}</h2>
     <div class="fiche">${lignes.join('')}</div>
-    <a class="btn principal plein" href="${mapsUrl(lieu.maps)}" target="_blank" rel="noopener">${icon('nav', 20)} Y aller</a>`);
+    <a class="btn principal plein" href="${mapsUrl(lieu.maps)}" target="_blank" rel="noopener">${icon('nav', 20)} Y aller</a>
+    <button class="btn plein" style="margin-top:10px" data-action="chauffeur" data-lieu="${esc(lieu.id)}">${icon('taxi', 20)} Montrer au chauffeur</button>`);
+}
+
+// "Montrer au chauffeur" : le nom et l'adresse en très gros, noir sur blanc,
+// à tendre à un taxi. Sans idLieu (ou pour l'hôtel) on affiche le logement avec
+// son adresse complète ; pour un autre lieu, sa recherche Maps (nom local + ville).
+export function ouvrirChauffeur(ctx, idLieu) {
+  const { voyage } = ctx;
+  const lieu = voyage.lieux.find((l) => l.id === idLieu);
+  const logement = voyage.logement;
+  const estLogement = !lieu || (logement && lieu.maps === logement.maps);
+  if (estLogement && !logement) return;
+  const nom = estLogement ? logement.nom : lieu.nom;
+  const adresse = estLogement ? logement.adresse : lieu.maps;
+  const phrase = logement?.phraseTaxi; // facultatif dans le JSON
+  ouvrirFeuille(`
+    <div class="sur-titre">À montrer au chauffeur</div>
+    <div class="chauffeur" lang="${esc(voyage.langue.code)}">
+      ${phrase ? `<div class="chauffeur-phrase">${esc(phrase.local)}</div>` : ''}
+      <div class="chauffeur-nom">${esc(nom)}</div>
+      <div class="chauffeur-adresse">${esc(adresse)}</div>
+    </div>
+    ${phrase ? `<p class="doux petit">« ${esc(phrase.local)} » = ${esc(phrase.fr)}</p>` : ''}
+    <p class="doux petit" style="margin-top:6px">Monte la luminosité de l’écran si besoin.</p>
+    <a class="btn plein" style="margin-top:14px" href="${mapsUrl(estLogement ? logement.maps : lieu.maps)}" target="_blank" rel="noopener">${icon('nav', 20)} Ouvrir dans Maps</a>`);
 }

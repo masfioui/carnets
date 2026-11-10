@@ -463,3 +463,28 @@ svg { display: block; flex: none; }
   70% { opacity: 1; }
   100% { opacity: 0; transform: translate(var(--x), calc(var(--y) + 160px)) rotate(var(--r)); }
 }
+
+/* ---------- Couleur par type de lieu ---------- */
+/* Chaque classe .cat-xxx définit la variable --cat ; les éléments ci-dessous s'en servent. */
+.cat-visite { --cat: #7fb2f0; }
+.cat-manger { --cat: #f2907a; }
+.cat-balade { --cat: #6fcf97; }
+.cat-shopping { --cat: #b99cf5; }
+.cat-option { --cat: #949ba6; }
+.cat-pratique { --cat: #8fa3b8; }
+.cat { color: var(--cat); font-weight: 650; white-space: nowrap; }
+.cat::before, .point {
+  content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cat); margin-right: 6px; vertical-align: 1px;
+}
+.puce .point { margin-right: 7px; }
+.vignette.sans-photo { color: var(--cat, #5b626d); }
+
+/* ---------- Montrer au chauffeur ---------- */
+/* Noir sur blanc et très gros : lisible à bout de bras, même en plein soleil. */
+.chauffeur { background: #fff; color: #000; border-radius: 18px; padding: 22px 20px; margin: 12px 0 14px; }
+.chauffeur-phrase { font-size: 19px; font-weight: 600; margin-bottom: 14px; }
+.chauffeur-nom { font-size: 34px; font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+.chauffeur-adresse { font-size: 26px; font-weight: 650; line-height: 1.25; margin-top: 10px; }
+
+.lien-discret { display: block; text-align: center; font-size: 13.5px; color: var(--doux); text-decoration: underline; padding: 14px 0 2px; }

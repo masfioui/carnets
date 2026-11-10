@@ -64,6 +64,13 @@ export function delai(echeance) {
   return { texte: `Avant le ${fmtDate(echeance, { day: 'numeric', month: 'short' })}`, etat: 'normal' };
 }
 
+// Nom affiché de chaque type de lieu. La couleur associée est dans css/style.css (.cat-visite, etc.).
+export const NOMS_CATEGORIES = { visite: 'Visite', manger: 'Manger', balade: 'Balade', shopping: 'Shopping', option: 'Option', pratique: 'Pratique' };
+
+// Petite étiquette colorée : un point + le nom du type de lieu.
+export const etiquetteCategorie = (categorie) =>
+  NOMS_CATEGORIES[categorie] ? `<span class="cat cat-${categorie}">${NOMS_CATEGORIES[categorie]}</span>` : '';
+
 // Les trois moments d'une journée, dans l'ordre d'affichage.
 export const MOMENTS = [['matin', 'Matin'], ['apresMidi', 'Après-midi'], ['soir', 'Soir']];
 

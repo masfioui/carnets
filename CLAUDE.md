@@ -63,7 +63,7 @@ Le validateur `js/validate.js` fait foi. Champs principaux :
 - En-tête : `schema` (1), `id`, `nom`, `pays`, `ville`, `dates {debut, fin}`, `accent`, `voyageurs`, `majLe`.
 - `devise {code, symbole, nom, taux, date, source}` : `taux` = unités locales pour 1 euro.
 - `langue {code, nom}` : code du type `tr-TR`, utilisé par la synthèse vocale.
-- `logement {nom, adresse, maps, note}`.
+- `logement {nom, adresse, maps, note, phraseTaxi? {local, fr}}` : `phraseTaxi` est la phrase « je voudrais aller à cette adresse » dans la langue locale, affichée en gros par le bouton « Montrer au chauffeur ».
 - `aSavoir[] {titre, texte, date, source, statut}`.
 - `lieux[] {id, nom, categorie, quartier, maps, prix?, horaires?, fermeture?, duree?, conseil?}`
   - `categorie` : `visite`, `manger`, `balade`, `shopping`, `option`, `pratique`.

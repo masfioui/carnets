@@ -79,13 +79,14 @@ function pratique(voyage) {
   return `
     <div style="margin-top:14px">
       ${l ? `
-        <div class="carte urgence">
+        <div class="carte urgence" style="flex-wrap:wrap">
           <div style="flex:1;min-width:0">
             <div class="sur-titre">Logement</div>
             <div style="font-weight:650;font-size:17px;margin:2px 0">${esc(l.nom)}</div>
             <div class="doux petit">${esc(l.adresse)}</div>
           </div>
           <a class="rond accent" href="${mapsUrl(l.maps)}" target="_blank" rel="noopener" aria-label="Aller à l'hôtel">${icon('nav', 20)}</a>
+          <button class="btn plein" data-action="chauffeur">${icon('taxi', 20)} Montrer l’adresse au chauffeur</button>
         </div>` : ''}
       ${voyage.aSavoir.map((s) => `
         <div class="carte savoir">

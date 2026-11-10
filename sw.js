@@ -8,7 +8,7 @@
 // Conséquence : après un déploiement, il faut ouvrir l'appli deux fois pour voir la nouveauté.
 //
 // Change ce numéro quand la liste SOCLE ci-dessous change.
-const CACHE = 'carnets-v4';
+const CACHE = 'carnets-v5';
 
 const SOCLE = [
   './',

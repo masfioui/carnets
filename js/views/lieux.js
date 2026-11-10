@@ -1,7 +1,7 @@
 // Onglet Lieux : tous les lieux du carnet, filtrables par catégorie.
 // Un appui sur une ligne ouvre la fiche complète, le bouton rond ouvre Google Maps.
 
-import { esc, mapsUrl, prixCourt, photoLieu } from '../util.js';
+import { esc, mapsUrl, prixCourt, photoLieu, etiquetteCategorie } from '../util.js';
 import { icon } from '../icons.js';
 
 const CATEGORIES = [
@@ -20,7 +20,7 @@ export function rendre(ctx) {
   const presentes = new Set(voyage.lieux.map((l) => l.categorie));
   const puces = CATEGORIES
     .filter(([cle]) => cle === 'tous' || presentes.has(cle))
-    .map(([cle, nom]) => `<button class="puce ${ui.categorie === cle ? 'actif' : ''}" data-action="filtrer" data-cat="${cle}">${nom}</button>`)
+    .map(([cle, nom]) => `<button class="puce ${ui.categorie === cle ? 'actif' : ''}" data-action="filtrer" data-cat="${cle}">${cle === 'tous' ? '' : `<i class="point cat-${cle}"></i>`}${nom}</button>`)
     .join('');
 
   const liste = voyage.lieux
@@ -30,10 +30,10 @@ export function rendre(ctx) {
       const aVerifier = l.prix?.statut === 'à vérifier' || l.horaires?.statut === 'à vérifier';
       return `
         <div class="carte lieu">
-          ${photoLieu(voyage, l) ? `<img class="vignette" src="${photoLieu(voyage, l)}" alt="" loading="lazy" data-action="lieu" data-lieu="${esc(l.id)}">` : `<div class="vignette sans-photo">${icon('pin', 22)}</div>`}
+          ${photoLieu(voyage, l) ? `<img class="vignette" src="${photoLieu(voyage, l)}" alt="" loading="lazy" data-action="lieu" data-lieu="${esc(l.id)}">` : `<div class="vignette sans-photo cat-${esc(l.categorie)}">${icon('pin', 22)}</div>`}
           <div class="lieu-corps" data-action="lieu" data-lieu="${esc(l.id)}" role="button">
             <div class="lieu-nom">${esc(l.nom)}</div>
-            <div class="lieu-infos">${[esc(l.quartier ?? ''), prix].filter(Boolean).join(' · ')}</div>
+            <div class="lieu-infos">${[etiquetteCategorie(l.categorie), esc(l.quartier ?? ''), prix].filter(Boolean).join(' · ')}</div>
             ${l.fermeture ? `<div class="lieu-ferme">${esc(l.fermeture)}</div>` : ''}
             ${aVerifier ? '<div style="margin-top:7px"><span class="badge averifier">À vérifier</span></div>' : ''}
           </div>
