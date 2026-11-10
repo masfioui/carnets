@@ -62,11 +62,19 @@ export function validerVoyage(v, fiche) {
     } else if (l.categorie !== 'pratique') {
       avertissements.push(`${ou} : aucun prix renseigné`);
     }
+    if (l.photo) {
+      // Le fichier images/<voyage>/<lieu>.jpg doit exister (vérifié par tools/validate.html).
+      exiger(texte(l.photo.credit) && texte(l.photo.licence) && /^https:\/\//.test(l.photo.source ?? ''), `${ou} : photo sans crédit, licence ou source`);
+    }
     if (l.horaires) {
       exiger(texte(l.horaires.texte), `${ou} : horaires.texte manquant`);
       exiger(STATUTS.includes(l.horaires.statut), `${ou} : horaires.statut invalide`);
       if (l.horaires.statut === 'à vérifier') avertissements.push(`${ou} : horaires à vérifier`);
     }
+  }
+
+  if (v.couverture !== undefined) {
+    exiger((v.lieux ?? []).some((l) => l.id === v.couverture && l.photo), `couverture « ${v.couverture} » : doit être l'id d'un lieu qui a une photo`);
   }
 
   // --- Jours ---

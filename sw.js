@@ -8,7 +8,7 @@
 // Conséquence : après un déploiement, il faut ouvrir l'appli deux fois pour voir la nouveauté.
 //
 // Change ce numéro quand la liste SOCLE ci-dessous change.
-const CACHE = 'carnets-v1';
+const CACHE = 'carnets-v2';
 
 const SOCLE = [
   './',
@@ -43,6 +43,14 @@ async function toutMettreEnCache() {
   await cache.addAll(SOCLE);
   const index = await (await fetch('trips/index.json')).json();
   await cache.addAll(index.voyages.map((fiche) => 'trips/' + fiche.fichier));
+
+  // Les photos : on lit chaque carnet pour savoir quels lieux en ont une.
+  // Une photo qui échoue ne doit pas empêcher l'installation, d'où le catch.
+  for (const fiche of index.voyages) {
+    const voyage = await (await fetch('trips/' + fiche.fichier)).json();
+    const photos = voyage.lieux.filter((l) => l.photo).map((l) => `images/${voyage.id}/${l.id}.jpg`);
+    await Promise.all(photos.map((url) => cache.add(url).catch(() => null)));
+  }
 }
 
 self.addEventListener('install', (evenement) => {

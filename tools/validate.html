@@ -33,6 +33,11 @@
         try {
           const voyage = await (await fetch('../trips/' + fiche.fichier, { cache: 'no-store' })).json();
           resultat = validerVoyage(voyage, fiche);
+          // Chaque lieu qui annonce une photo doit avoir son fichier image.
+          for (const lieu of voyage.lieux.filter((l) => l.photo)) {
+            const reponse = await fetch(`../images/${voyage.id}/${lieu.id}.jpg`, { method: 'HEAD', cache: 'no-store' });
+            if (!reponse.ok) resultat.erreurs.push(`lieu « ${lieu.id} » : fichier images/${voyage.id}/${lieu.id}.jpg introuvable`);
+          }
         } catch (erreur) {
           resultat = { erreurs: ['Fichier illisible ou JSON invalide : ' + erreur.message], avertissements: [] };
         }

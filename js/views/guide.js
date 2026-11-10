@@ -93,6 +93,22 @@ function pratique(voyage) {
           <p style="color:#c3c8d0">${esc(s.texte)}</p>
           ${s.statut === 'vérifié' ? '' : `<div style="margin-top:9px">${badgeStatut(s.statut)}</div>`}
         </div>`).join('')}
+      ${creditsPhotos(voyage)}
+    </div>`;
+}
+
+// Les licences libres demandent de citer l'auteur de chaque photo : on le fait ici.
+function creditsPhotos(voyage) {
+  const avecPhoto = voyage.lieux.filter((l) => l.photo);
+  if (!avecPhoto.length) return '';
+  return `
+    <div class="carte savoir">
+      <h3>Crédits photos</h3>
+      <p class="doux petit">Photos issues de Wikimedia Commons, sous licence libre.</p>
+      ${avecPhoto.map((l) => `
+        <p class="petit" style="margin-top:7px">${esc(l.nom)} :
+          <a href="${esc(l.photo.source)}" target="_blank" rel="noopener" style="text-decoration:underline">${esc(l.photo.credit)}</a>,
+          <span class="doux">${esc(l.photo.licence)}</span></p>`).join('')}
     </div>`;
 }
 

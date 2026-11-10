@@ -1,6 +1,6 @@
 // Accueil : la liste des carnets, le bouton "Nouveau voyage" et la sauvegarde.
 
-import { esc, dateISO, joursEntre, periode, toutesActivites, avancement, rappelsEnAttente, delai } from '../util.js';
+import { esc, dateISO, joursEntre, periode, toutesActivites, avancement, rappelsEnAttente, delai, photoLieu } from '../util.js';
 import { icon } from '../icons.js';
 import { ouvrirFeuille, toast } from '../feuille.js';
 
@@ -27,9 +27,12 @@ export function rendre(ctx) {
   const cartes = ctx.index.voyages.map((fiche) => {
     const voyage = ctx.voyages[fiche.id];
     if (!voyage) return '';
+    // Photo de fond de la carte : le lieu désigné par "couverture" dans le JSON du voyage.
+    const fond = photoLieu(voyage, voyage.lieux.find((l) => l.id === voyage.couverture));
     const { faites, total } = avancement(toutesActivites(voyage), ctx.store.etat(fiche.id).coches);
     return `
-      <a class="voyage" href="#/v/${esc(fiche.id)}/jours" style="--accent:${esc(fiche.accent || '#E0A458')}">
+      <a class="voyage ${fond ? 'avec-photo' : ''}" href="#/v/${esc(fiche.id)}/jours" style="--accent:${esc(fiche.accent || '#E0A458')}">
+        ${fond ? `<img class="voyage-fond" src="${fond}" alt="">` : ''}
         <div class="sur-titre">${esc(fiche.pays)}</div>
         <div class="voyage-ligne">
           <h2>${esc(fiche.nom)}</h2>

@@ -6,6 +6,7 @@
   "ville": "Istanbul",
   "dates": { "debut": "2027-01-17", "fin": "2027-01-23" },
   "accent": "#E0A458",
+  "couverture": "ortakoy",
   "voyageurs": 4,
   "majLe": "2026-11-10",
 
@@ -90,6 +91,7 @@
     },
     {
       "id": "suleymaniye",
+      "photo": { "credit": "Hunanuk", "licence": "CC0", "source": "https://commons.wikimedia.org/wiki/File:S%C3%BCleymaniyeMosqueIstanbul_(cropped).jpg" },
       "nom": "Mosquée Süleymaniye",
       "categorie": "visite",
       "quartier": "Fatih",
@@ -146,6 +148,7 @@
     },
     {
       "id": "ayasofya",
+      "photo": { "credit": "Adli Wahid", "licence": "CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:Hagia_Sophia_(228968325).jpeg" },
       "nom": "Sainte-Sophie",
       "categorie": "visite",
       "quartier": "Sultanahmet",
@@ -158,6 +161,7 @@
     },
     {
       "id": "mosquee-bleue",
+      "photo": { "credit": "Pedro Szekely from Los Angeles, USA", "licence": "CC BY-SA 2.0", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_(34223582516)_(cropped).jpg" },
       "nom": "Mosquée Bleue",
       "categorie": "visite",
       "quartier": "Sultanahmet",
@@ -169,6 +173,7 @@
     },
     {
       "id": "hippodrome",
+      "photo": { "credit": "Ninara", "licence": "CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Sultanahmet_Square,_Obelisk_of_Theodosius,_Istanbul_(52121868925).jpg" },
       "nom": "Hippodrome (place Sultanahmet)",
       "categorie": "balade",
       "quartier": "Sultanahmet",
@@ -189,6 +194,7 @@
     },
     {
       "id": "topkapi",
+      "photo": { "credit": "Carlos Delgado", "licence": "CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:Topkap%C4%B1_-_01.jpg" },
       "nom": "Palais de Topkapi + Harem",
       "categorie": "visite",
       "quartier": "Sultanahmet",
@@ -201,6 +207,7 @@
     },
     {
       "id": "citerne",
+      "photo": { "credit": "Diego Delso", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Cisterna_Bas%C3%ADlica,_Estambul,_Turqu%C3%ADa,_2024-09-28,_DD_58-60_HDR.jpg" },
       "nom": "Citerne Basilique",
       "categorie": "visite",
       "quartier": "Sultanahmet",
@@ -212,6 +219,7 @@
     },
     {
       "id": "grand-bazar",
+      "photo": { "credit": "A.Savin", "licence": "FAL", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2021-11_img41_Grand_Bazaar.jpg" },
       "nom": "Grand Bazar",
       "categorie": "shopping",
       "quartier": "Beyazıt, Fatih",
@@ -224,6 +232,7 @@
     },
     {
       "id": "bazar-egyptien",
+      "photo": { "credit": "Robot8A", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Spice_Bazaar_Istanbul_Feb_2020,_img_2.jpg" },
       "nom": "Bazar égyptien (aux épices)",
       "categorie": "shopping",
       "quartier": "Eminönü",
@@ -235,6 +244,7 @@
     },
     {
       "id": "eminonu",
+      "photo": { "credit": "Rrburke", "licence": "CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:Galata_Bridge_from_Galata_Tower.JPG" },
       "nom": "Quais d'Eminönü et pont de Galata",
       "categorie": "balade",
       "quartier": "Eminönü",
@@ -245,6 +255,7 @@
     },
     {
       "id": "galata",
+      "photo": { "credit": "A.Savin", "licence": "FAL", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img48_Galata_Tower.jpg" },
       "nom": "Tour de Galata",
       "categorie": "visite",
       "quartier": "Galata, Beyoğlu",
@@ -256,6 +267,7 @@
     },
     {
       "id": "istiklal",
+      "photo": { "credit": "Mark Ahsmann", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Istiklal_Avenue_in_Istanbul_-_Turkey.jpg" },
       "nom": "Avenue İstiklal",
       "categorie": "balade",
       "quartier": "Beyoğlu",
@@ -266,6 +278,7 @@
     },
     {
       "id": "taksim",
+      "photo": { "credit": "Jorge Franganillo", "licence": "CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_Taksim_Square_(54515155507).jpg" },
       "nom": "Place Taksim",
       "categorie": "balade",
       "quartier": "Beyoğlu",
@@ -276,6 +289,7 @@
     },
     {
       "id": "dolmabahce",
+      "photo": { "credit": "flowcomm", "licence": "CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Dolmabahce_Istanbul_Turkey.jpg" },
       "nom": "Palais de Dolmabahçe",
       "categorie": "visite",
       "quartier": "Beşiktaş",
@@ -288,6 +302,7 @@
     },
     {
       "id": "ortakoy",
+      "photo": { "credit": "A.Savin", "licence": "FAL", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_asv2020-02_img60_Ortak%C3%B6y_Mosque.jpg" },
       "nom": "Ortaköy",
       "categorie": "balade",
       "quartier": "Beşiktaş",
@@ -298,6 +313,7 @@
     },
     {
       "id": "bebek",
+      "photo": { "credit": "Keladawy", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Bebek_Istanbul.jpg" },
       "nom": "Bebek",
       "categorie": "balade",
       "quartier": "Beşiktaş",
@@ -349,6 +365,7 @@
     },
     {
       "id": "camlica",
+      "photo": { "credit": "Metuboy", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:%C3%87aml%C4%B1caTower.jpg" },
       "nom": "Çamlıca (tour et grande mosquée)",
       "categorie": "visite",
       "quartier": "Üsküdar",
@@ -370,6 +387,7 @@
     },
     {
       "id": "kiz-kulesi",
+      "photo": { "credit": "Jorge Franganillo", "licence": "CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_K%C4%B1z_Kulesi_(54511155871)_(cropped).jpg" },
       "nom": "Tour de Léandre (Kız Kulesi)",
       "categorie": "visite",
       "quartier": "Üsküdar",
@@ -381,6 +399,7 @@
     },
     {
       "id": "hammam",
+      "photo": { "credit": "Maris Teteris", "licence": "CC BY 3.0", "source": "https://commons.wikimedia.org/wiki/File:Istanbul_-_panoramio_(116).jpg" },
       "nom": "Çemberlitaş Hamamı",
       "categorie": "visite",
       "quartier": "Çemberlitaş, Fatih",
@@ -392,6 +411,7 @@
     },
     {
       "id": "fener",
+      "photo": { "credit": "Ragnhild&Neil Crawford from Sweden", "licence": "CC BY-SA 2.0", "source": "https://commons.wikimedia.org/wiki/File:Greek_Orthodox_College_in_Istanbul-0748_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg" },
       "nom": "Fener",
       "categorie": "balade",
       "quartier": "Fener, Fatih",
@@ -402,6 +422,7 @@
     },
     {
       "id": "balat",
+      "photo": { "credit": "Antoloji", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:Balat_houses.jpg" },
       "nom": "Balat",
       "categorie": "balade",
       "quartier": "Balat, Fatih",
@@ -412,6 +433,7 @@
     },
     {
       "id": "eyup",
+      "photo": { "credit": "User:Darwinek", "licence": "CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:%C4%B0stanbul_5999.jpg" },
       "nom": "Mosquée Eyüp Sultan",
       "categorie": "visite",
       "quartier": "Eyüp",
@@ -454,6 +476,7 @@
     },
     {
       "id": "buyukada",
+      "photo": { "credit": "Metuboy", "licence": "CC BY-SA 4.0", "source": "https://commons.wikimedia.org/wiki/File:BuyukadaMainSquare.jpg" },
       "nom": "Îles des Princes (Büyükada)",
       "categorie": "option",
       "quartier": "Mer de Marmara",

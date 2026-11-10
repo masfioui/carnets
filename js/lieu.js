@@ -1,7 +1,7 @@
 // Fiche détaillée d'un lieu, affichée dans la feuille du bas.
 // Utilisée par l'écran Jours et par l'écran Lieux.
 
-import { esc, mapsUrl, fmtDate, nombre, euros } from './util.js';
+import { esc, mapsUrl, fmtDate, nombre, euros, photoLieu } from './util.js';
 import { icon } from './icons.js';
 import { ouvrirFeuille } from './feuille.js';
 import { tauxCourant } from './taux.js';
@@ -44,7 +44,11 @@ export function ouvrirLieu(ctx, idLieu) {
   if (lieu.duree) lignes.push(ligne('route', 'Temps sur place', `<div>${esc(lieu.duree)}</div>`));
   if (lieu.conseil) lignes.push(ligne('bulb', 'Conseil', `<div>${esc(lieu.conseil)}</div>`));
 
+  const photo = photoLieu(ctx.voyage, lieu);
   ouvrirFeuille(`
+    ${photo ? `
+      <img class="photo-tete" src="${photo}" alt="${esc(lieu.nom)}">
+      <div class="credit">Photo : <a href="${esc(lieu.photo.source)}" target="_blank" rel="noopener">${esc(lieu.photo.credit)}</a>, ${esc(lieu.photo.licence)}</div>` : ''}
     <div class="sur-titre">${esc(lieu.quartier ?? '')}</div>
     <h2>${esc(lieu.nom)}</h2>
     <div class="fiche">${lignes.join('')}</div>

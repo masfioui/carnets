@@ -74,6 +74,15 @@ Le validateur `js/validate.js` fait foi. Champs principaux :
   - `echeance` (date limite, AAAA-MM-JJ, au plus tard le jour du départ) transforme l'élément en **rappel** : il remonte sur l'accueil et l'onglet Jours quand il reste 7 jours ou moins, et part dans le fichier calendrier (`js/calendrier.js`). Mettre une échéance à tout ce qui se réserve ou se prépare à l'avance (réservations, papiers, revérification des prix, enregistrement du vol), avec des dates réalistes par rapport au départ.
 - `budget {devise: "EUR", prevu, categories[]}`.
 
+## Photos
+
+- Une photo par lieu, facultative, stockée dans le dépôt : `images/<voyage>/<idLieu>.jpg` (960 px de large). Pas de lien vers un site externe : l'appli doit marcher hors ligne.
+- **Uniquement des photos sous licence libre** venant de Wikimedia Commons, avec crédit. Le lieu porte alors `photo {credit, licence, source}` ; les crédits s'affichent sur la fiche du lieu et dans Guide > Pratique.
+- Processus : écrire `images/<voyage>/sources.json` (`{ "idLieu": "Titre de l'article Wikipedia anglais" }`), puis lancer `powershell -ExecutionPolicy Bypass -File tools\photos.ps1 -Voyage <voyage>`. Le script prend l'image principale de l'article, refuse les licences non libres, télécharge, et ajoute la ligne `photo` dans le JSON. S'il répond « trop de requêtes », attendre quelques minutes et relancer (il saute ce qui est déjà fait).
+- **Regarder chaque photo** avant de publier : l'image principale d'un article de quartier montre parfois un autre endroit. Dans ce cas, supprimer le fichier, la ligne `photo` et l'entrée de `sources.json`. Mieux vaut pas de photo qu'une photo du mauvais lieu.
+- Pas de photo pour les restaurants et commerces sans article : ne pas en chercher ailleurs.
+- `couverture` (à la racine du voyage, et facultatif sur un jour) = `id` d'un lieu avec photo, utilisé comme image de la carte d'accueil ou de l'en-tête du jour. Sans `couverture`, un jour prend la photo de son premier lieu qui en a une.
+
 ## Service worker
 
 `sw.js` sert le cache d'abord et se met à jour en arrière-plan : après un déploiement, la nouveauté apparaît à la **deuxième** ouverture.

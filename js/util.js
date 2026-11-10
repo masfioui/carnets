@@ -8,6 +8,10 @@ export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => CARACTERES[
 export const mapsUrl = (recherche) =>
   'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(recherche);
 
+// Adresse de la photo d'un lieu. Convention : un lieu qui a un champ "photo"
+// dans le JSON a son image dans images/<voyage>/<lieu>.jpg. Renvoie '' sinon.
+export const photoLieu = (voyage, lieu) => (lieu && lieu.photo ? `images/${voyage.id}/${lieu.id}.jpg` : '');
+
 // Dates au format "2027-01-17", toujours en heure locale du téléphone.
 export function dateISO(d = new Date()) {
   const p = (n) => String(n).padStart(2, '0');

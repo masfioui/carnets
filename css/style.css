@@ -327,6 +327,34 @@ svg { display: block; flex: none; }
 .ajout { display: flex; gap: 8px; margin-top: 12px; }
 .ajout .champ { flex: 1; min-height: 48px; }
 
+/* ---------- Photos ---------- */
+/* object-fit: cover = l'image remplit son cadre en étant rognée, jamais déformée. */
+.vignette { width: 62px; height: 62px; border-radius: 12px; object-fit: cover; flex: none; background: var(--carte2); margin-left: -4px; }
+/* Lieu sans photo : un carré neutre avec une épingle, pour garder l'alignement de la liste. */
+.vignette.sans-photo { display: flex; align-items: center; justify-content: center; color: #5b626d; }
+.photo-tete {
+  display: block; width: calc(100% + 40px); height: 220px; object-fit: cover;
+  margin: -22px -20px 8px; border-radius: 24px 24px 0 0; background: var(--carte2);
+}
+.credit { font-size: 11.5px; color: var(--doux); margin-bottom: 14px; }
+.credit a { text-decoration: underline; }
+.feuille-x { z-index: 2; }
+
+.jour-photo { position: relative; height: 200px; border-radius: 20px; overflow: hidden; margin-bottom: 12px; background: var(--carte2); }
+.jour-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Dégradé sombre en bas pour que le texte blanc reste lisible sur n'importe quelle photo. */
+.jour-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5, 6, 8, .92) 0%, rgba(5, 6, 8, .45) 45%, rgba(5, 6, 8, 0) 75%); }
+.jour-photo-texte { position: absolute; left: 16px; right: 16px; bottom: 14px; z-index: 1; }
+.jour-photo-texte .sur-titre { color: #e4e7ec; }
+.jour-photo-texte h2 { margin: 3px 0 0; text-shadow: 0 1px 12px rgba(0, 0, 0, .6); }
+
+.voyage.avec-photo { padding-top: 150px; }
+.voyage-fond { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.voyage.avec-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 11, 13, .97) 0%, rgba(10, 11, 13, .82) 38%, rgba(10, 11, 13, .05) 80%); }
+.voyage.avec-photo > *:not(.voyage-fond) { position: relative; z-index: 1; }
+.voyage.avec-photo::before { z-index: 2; }
+.voyage.avec-photo .sur-titre, .voyage.avec-photo .doux { color: #d5d9df; }
+
 /* ---------- Rappels (dates limites) ---------- */
 .echeance { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 650; color: var(--doux); margin-top: 2px; }
 .echeance.urgent { color: var(--alerte); }

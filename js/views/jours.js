@@ -1,7 +1,7 @@
 // Onglet Jours : le planning jour par jour. S'ouvre sur le jour en cours
 // pendant le voyage, sinon sur le premier jour.
 
-import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
+import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
 import { icon } from '../icons.js';
 
 function bandeau(voyage, etat) {
@@ -97,6 +97,12 @@ export function rendre(ctx) {
       </button>`;
   }).join('');
 
+  // Photo du jour : le lieu désigné par "couverture" dans le JSON, sinon le
+  // premier lieu de la journée qui a une photo.
+  const lieuxDuJour = activitesDuJour(jour).map((a) => voyage.lieux.find((l) => l.id === a.lieu));
+  const lieuCouverture = voyage.lieux.find((l) => l.id === jour.couverture) ?? lieuxDuJour.find((l) => l?.photo);
+  const couverture = photoLieu(voyage, lieuCouverture);
+
   const duJour = avancement(activitesDuJour(jour), etat.coches);
   // La "prochaine étape" est la première activité non cochée et non optionnelle du jour.
   const prochaine = activitesDuJour(jour).find((a) => !a.optionnel && !etat.coches['act:' + a.id]);
@@ -115,8 +121,16 @@ export function rendre(ctx) {
     ${carteRappels(voyage, etat)}
     <div class="jours">${selecteur}</div>
     <div class="jour-tete">
-      <div class="sur-titre">${fmtDate(jour.date, { weekday: 'long', day: 'numeric', month: 'long' })}</div>
-      <h2>${esc(jour.titre)}</h2>
+      ${couverture ? `
+        <div class="jour-photo">
+          <img src="${couverture}" alt="">
+          <div class="jour-photo-texte">
+            <div class="sur-titre">${fmtDate(jour.date, { weekday: 'long', day: 'numeric', month: 'long' })}</div>
+            <h2>${esc(jour.titre)}</h2>
+          </div>
+        </div>` : `
+        <div class="sur-titre">${fmtDate(jour.date, { weekday: 'long', day: 'numeric', month: 'long' })}</div>
+        <h2>${esc(jour.titre)}</h2>`}
       <p class="doux">${esc(jour.resume ?? '')}</p>
       <div class="jour-avance">
         <div class="barre"><i style="width:${duJour.total ? (duJour.faites / duJour.total) * 100 : 0}%"></i></div>
