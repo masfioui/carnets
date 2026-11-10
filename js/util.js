@@ -1,5 +1,7 @@
 // Petites fonctions utilisées partout. Aucune ne touche à la page ni au stockage.
 
+import { icon } from './icons.js';
+
 // Échappe un texte avant de l'insérer dans du HTML (évite qu'un "<" casse la page).
 const CARACTERES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => CARACTERES[c]);
@@ -70,6 +72,20 @@ export const NOMS_CATEGORIES = { visite: 'Visite', manger: 'Manger', balade: 'Ba
 // Petite étiquette colorée : un point + le nom du type de lieu.
 export const etiquetteCategorie = (categorie) =>
   NOMS_CATEGORIES[categorie] ? `<span class="cat cat-${categorie}">${NOMS_CATEGORIES[categorie]}</span>` : '';
+
+// Case à cocher ronde. cle = clé complète ("avant:passeport") ou id = id d'activité.
+// Sur iPhone, Safari n'a pas de fonction de vibration. Seule chose qui vibre encore
+// (depuis iOS 26.5) : un vrai interrupteur natif <input type="checkbox" switch> touché
+// par le doigt. On en pose donc un, invisible, par-dessus la case : c'est lui qui
+// reçoit le toucher et produit le petit "tic". Le clic remonte ensuite au <label>,
+// qui porte data-action="cocher".
+export function coche({ cle, id, fait, label }) {
+  const cible = cle ? `data-cle="${esc(cle)}"` : `data-id="${esc(id)}"`;
+  return `<label class="coche" data-action="cocher" ${cible} aria-pressed="${!!fait}">
+    <input class="haptique" type="checkbox" switch ${fait ? 'checked' : ''} aria-label="${esc(label)}">
+    <span>${icon('check', 16)}</span>
+  </label>`;
+}
 
 // Les trois moments d'une journée, dans l'ordre d'affichage.
 export const MOMENTS = [['matin', 'Matin'], ['apresMidi', 'Après-midi'], ['soir', 'Soir']];

@@ -1,7 +1,7 @@
 // Onglet Jours : le planning jour par jour. S'ouvre sur le jour en cours
 // pendant le voyage, sinon sur le premier jour.
 
-import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, etiquetteCategorie, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
+import { esc, coche, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, etiquetteCategorie, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
 import { icon } from '../icons.js';
 import { toast } from '../feuille.js';
 import { feter, vibrer } from '../effets.js';
@@ -38,7 +38,7 @@ function carteRappels(voyage, etat) {
         const d = delai(r.echeance);
         return `
           <div class="item">
-            <button class="coche" data-action="cocher" data-cle="avant:${esc(r.id)}" aria-pressed="false" aria-label="${esc(r.texte)}"><span>${icon('check', 16)}</span></button>
+            ${coche({ cle: 'avant:' + r.id, fait: false, label: r.texte })}
             <div class="item-corps">
               <div class="item-texte">${esc(r.texte)}</div>
               <div class="echeance ${d.etat}">${d.texte}</div>
@@ -66,9 +66,7 @@ function carteActivite(act, voyage, etat, suivante) {
   return `
     ${act.trajet ? `<div class="trajet">${icon('route', 16)}<span>${esc(act.trajet)}</span></div>` : ''}
     <div class="act ${fait ? 'fait' : ''} ${suivante ? 'suivante' : ''}">
-      <button class="coche" data-action="cocher" data-id="${esc(act.id)}" aria-pressed="${fait}" aria-label="Marquer ${esc(titre)} comme fait">
-        <span>${icon('check', 16)}</span>
-      </button>
+      ${coche({ id: act.id, fait, label: 'Marquer ' + titre + ' comme fait' })}
       <div class="act-corps" ${lieu ? `data-action="lieu" data-lieu="${esc(lieu.id)}" role="button"` : ''}>
         ${suivante ? '<div class="etiquette">Prochaine étape</div>' : ''}
         ${act.optionnel ? '<div class="etiquette" style="color:var(--doux)">Optionnel</div>' : ''}

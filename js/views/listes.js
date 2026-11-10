@@ -1,7 +1,7 @@
 // Onglet Listes : check-list avant le départ et valise.
 // Les éléments du JSON sont fixes ; tu peux ajouter les tiens (stockés sur le téléphone).
 
-import { esc, delai } from '../util.js';
+import { esc, delai, coche } from '../util.js';
 import { icon } from '../icons.js';
 
 const LISTES = [['avant', 'Avant le départ'], ['valise', 'Valise']];
@@ -22,7 +22,7 @@ function liste(cle, titre, voyage, etat) {
         const fait = !!etat.coches[`${cle}:${i.id}`];
         return `
           <div class="item ${fait ? 'fait' : ''}">
-            <button class="coche" data-action="cocher" data-cle="${cle}:${esc(i.id)}" aria-pressed="${fait}" aria-label="${esc(i.texte)}"><span>${icon('check', 16)}</span></button>
+            ${coche({ cle: `${cle}:${i.id}`, fait, label: i.texte })}
             <div class="item-corps">
               <div class="item-texte">${esc(i.texte)}</div>
               ${i.note ? `<div class="doux petit">${esc(i.note)}</div>` : ''}

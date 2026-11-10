@@ -1,6 +1,6 @@
 // Onglet Guide : phrases à écouter, plats à cocher, arnaques, urgences, infos pratiques.
 
-import { esc, mapsUrl } from '../util.js';
+import { esc, mapsUrl, coche } from '../util.js';
 import { icon } from '../icons.js';
 import { toast } from '../feuille.js';
 import { badgeStatut } from '../lieu.js';
@@ -39,7 +39,7 @@ function plats(voyage, etat) {
         const fait = !!etat.coches['plat:' + p.id];
         return `
           <div class="plat ${fait ? 'fait' : ''}">
-            <button class="coche" data-action="cocher" data-cle="plat:${esc(p.id)}" aria-pressed="${fait}" aria-label="${esc(p.nom)} goûté"><span>${icon('check', 16)}</span></button>
+            ${coche({ cle: 'plat:' + p.id, fait, label: p.nom + ' goûté' })}
             <div>
               <div class="plat-nom">${esc(p.nom)}</div>
               <div class="petit" style="color:#c3c8d0">${esc(p.description)}</div>

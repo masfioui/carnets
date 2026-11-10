@@ -2,28 +2,12 @@
 // Rien ici n'est indispensable : si un effet ne marche pas sur un téléphone,
 // l'appli continue normalement (d'où les try/catch).
 
-// Petite vibration sous le doigt.
-// - Android : navigator.vibrate existe, on l'utilise.
-// - iPhone : Safari ne connaît pas navigator.vibrate. Astuce connue : depuis iOS 18,
-//   basculer un interrupteur (<input type="checkbox" switch>) déclenche un léger
-//   retour haptique. On en crée un invisible, on le bascule, on le retire.
-//   Sur un iPhone plus ancien il ne se passe simplement rien.
+// Petite vibration sous le doigt, sur Android seulement (navigator.vibrate).
+// Safari sur iPhone ne connaît pas cette fonction : là-bas, la vibration des cases
+// vient de l'interrupteur natif caché dans chaque case (voir coche() dans util.js).
 export function vibrer(duree = 12) {
   try {
-    if (navigator.vibrate) {
-      navigator.vibrate(duree);
-      return;
-    }
-    const etiquette = document.createElement('label');
-    etiquette.style.display = 'none';
-    etiquette.setAttribute('aria-hidden', 'true');
-    const interrupteur = document.createElement('input');
-    interrupteur.type = 'checkbox';
-    interrupteur.setAttribute('switch', '');
-    etiquette.appendChild(interrupteur);
-    document.head.appendChild(etiquette);
-    etiquette.click();
-    etiquette.remove();
+    navigator.vibrate?.(duree);
   } catch {
     // Pas de vibration possible : tant pis.
   }

@@ -162,7 +162,13 @@ document.addEventListener('click', (e) => {
   if (!el) return;
   const action = vueCourante.actions?.[el.dataset.action] ?? actionsCommunes[el.dataset.action];
   if (!action) return;
-  if (el.classList.contains('coche')) vibrer(); // petite vibration sous le doigt
+  if (el.classList.contains('coche')) {
+    // Un toucher sur le bord de la case arrive d'abord sur le <label>, puis le
+    // navigateur le renvoie à l'interrupteur caché : on n'agit qu'à ce second clic,
+    // sinon la case serait cochée puis décochée aussitôt.
+    if (!e.target.classList.contains('haptique')) return;
+    vibrer(); // Android ; sur iPhone c'est l'interrupteur caché qui vibre
+  }
   action(el, ctx, e);
 
   // Case cochée : l'écran vient d'être redessiné, on retrouve la nouvelle case
