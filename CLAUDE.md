@@ -21,6 +21,7 @@ js/taux.js              taux de change (API Frankfurter + saisie manuelle)
 js/lieu.js              fiche d'un lieu
 js/calendrier.js        export des rappels en fichier .ics (pas de notifications push : pas de serveur)
 js/feuille.js           panneau du bas, toast, saisie d'un nombre
+js/effets.js            vibration (astuce iPhone) et confettis de fin de journée
 js/views/*.js           un fichier par écran : rendre(ctx), monter(racine, ctx), actions
 js/validate.js          validateur du schéma
 tools/validate.html     page qui valide tous les voyages

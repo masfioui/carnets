@@ -450,3 +450,16 @@ svg { display: block; flex: none; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .fond.sort { opacity: 0; }
 }
+
+/* --- Confettis (journée entièrement cochée), créés par js/effets.js --- */
+/* Placé après le bloc "Réduire les animations" : js/effets.js ne les crée pas dans ce cas. */
+.fete { position: fixed; left: 50%; top: 42%; width: 0; height: 0; z-index: 70; pointer-events: none; }
+.fete i {
+  position: absolute; width: 8px; height: 12px; border-radius: 2px; opacity: 0;
+  animation: confetti 1.5s cubic-bezier(.15, .7, .3, 1) forwards;
+}
+@keyframes confetti {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0); }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--x), calc(var(--y) + 160px)) rotate(var(--r)); }
+}

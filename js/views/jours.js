@@ -3,6 +3,8 @@
 
 import { esc, dateISO, fmtDate, joursEntre, mapsUrl, prixCourt, photoLieu, rappelsEnAttente, delai, MOMENTS, activitesDuJour, toutesActivites, avancement } from '../util.js';
 import { icon } from '../icons.js';
+import { toast } from '../feuille.js';
+import { feter, vibrer } from '../effets.js';
 
 function bandeau(voyage, etat) {
   const aujourdhui = dateISO();
@@ -158,5 +160,14 @@ export const actions = {
     else ctx.etat.coches[cle] = true;
     ctx.sauver();
     ctx.rendre();
+
+    // On vient de cocher la dernière activité du jour : confettis.
+    const jour = ctx.voyage.jours.find((j) => j.date === ctx.ui.jour);
+    const a = avancement(activitesDuJour(jour ?? {}), ctx.etat.coches);
+    if (cle.startsWith('act:') && ctx.etat.coches[cle] && a.total && a.faites === a.total) {
+      feter();
+      vibrer(60);
+      toast('Journée bouclée');
+    }
   },
 };

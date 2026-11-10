@@ -11,6 +11,7 @@ import { esc, periode, rappelsEnAttente } from './util.js';
 import { fermerFeuille, toast } from './feuille.js';
 import { ouvrirCalendrier } from './calendrier.js';
 import { ouvrirLieu } from './lieu.js';
+import { vibrer } from './effets.js';
 import { actualiserTaux, tauxPerime } from './taux.js';
 import * as accueil from './views/accueil.js';
 import * as jours from './views/jours.js';
@@ -160,6 +161,7 @@ document.addEventListener('click', (e) => {
   if (!el) return;
   const action = vueCourante.actions?.[el.dataset.action] ?? actionsCommunes[el.dataset.action];
   if (!action) return;
+  if (el.classList.contains('coche')) vibrer(); // petite vibration sous le doigt
   action(el, ctx, e);
 
   // Case cochée : l'écran vient d'être redessiné, on retrouve la nouvelle case
