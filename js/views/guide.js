@@ -116,17 +116,44 @@ export function rendre(ctx) {
 
 // Lecture à voix haute avec la synthèse vocale du téléphone (Web Speech API).
 // La voix dépend des voix installées sur l'appareil : on prévient si elle manque.
+//
+// Trois pièges propres à l'iPhone, gérés ici :
+//  - appeler cancel() juste avant speak() fait parfois disparaître la phrase :
+//    on n'annule que si une lecture est réellement en cours ;
+//  - l'objet "énoncé" doit rester référencé pendant la lecture, sinon il peut
+//    être effacé de la mémoire avant d'avoir parlé (d'où la variable enCours) ;
+//  - le bouton silencieux du téléphone coupe aussi la synthèse vocale : si rien
+//    ne démarre au bout de 1,5 s, on affiche un message pour le dire.
+let enCours = null;
+
 function parler(texte, codeLangue) {
-  if (!('speechSynthesis' in window)) return toast('Lecture audio indisponible sur ce navigateur');
+  const synthese = window.speechSynthesis;
+  if (!synthese) return toast('Lecture audio indisponible sur ce navigateur');
+  if (synthese.speaking || synthese.pending) synthese.cancel();
+
   const enonce = new SpeechSynthesisUtterance(texte);
+  enCours = enonce;
   enonce.lang = codeLangue;
-  enonce.rate = 0.85;
-  const voix = speechSynthesis.getVoices();
+  enonce.rate = 0.9;
+  const voix = synthese.getVoices();
   const bonne = voix.find((v) => v.lang.replace('_', '-').toLowerCase().startsWith(codeLangue.slice(0, 2)));
   if (bonne) enonce.voice = bonne;
-  else if (voix.length) toast('Voix absente : ajoute-la dans Réglages > Accessibilité > Contenu énoncé > Voix');
-  speechSynthesis.cancel();
-  speechSynthesis.speak(enonce);
+
+  let demarre = false;
+  enonce.onstart = () => { demarre = true; };
+  enonce.onerror = (e) => {
+    demarre = true; // évite un second message
+    if (e.error !== 'interrupted' && e.error !== 'canceled') toast(`Lecture impossible (${e.error})`);
+  };
+  synthese.resume(); // relance la synthèse si le téléphone l'avait mise en pause
+  synthese.speak(enonce);
+
+  setTimeout(() => {
+    if (demarre) return;
+    toast(voix.length && !bonne
+      ? 'Voix absente : Réglages > Accessibilité > Contenu énoncé > Voix'
+      : 'Pas de son ? Désactive le mode silencieux et monte le volume');
+  }, 1500);
 }
 // Certains navigateurs chargent la liste des voix en différé : on la demande tôt.
 if ('speechSynthesis' in window) speechSynthesis.getVoices();
