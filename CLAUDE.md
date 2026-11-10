@@ -8,6 +8,7 @@ Appli web perso (PWA) qui affiche des carnets de voyage sur téléphone. Le prop
 - **Le contenu est séparé du code.** Un fichier `trips/<id>.json` par voyage, listé dans `trips/index.json`. Ajouter un voyage ne demande jamais de toucher au JavaScript.
 - **Les données perso restent sur le téléphone** (localStorage, clé `carnets.v1`, voir `js/store.js`). Ne jamais changer le format des clés de cases cochées (`act:<id>`, `plat:<id>`, `avant:<id>`, `valise:<id>`) ni renommer un `id` déjà déployé : ça effacerait les coches de l'utilisateur.
 - **Design** : sombre et sobre, pensé pour 390 px de large (iPhone 13), zones tactiles d'au moins 44 px, icônes SVG au trait (`js/icons.js`), pas d'emoji.
+- **Animations** (fin de `css/style.css`) : seulement `transform` et `opacity`. Les animations d'entrée vivent sous la classe `.entree`, posée par `js/app.js` quand on change d'écran (`ctx.rendre(true)`), jamais quand on coche une case. Tout est coupé par `prefers-reduced-motion`.
 
 ## Arborescence
 
@@ -24,6 +25,7 @@ js/views/*.js           un fichier par écran : rendre(ctx), monter(racine, ctx)
 js/validate.js          validateur du schéma
 tools/validate.html     page qui valide tous les voyages
 tools/serve.ps1         serveur local sans installation
+tools/icone.ps1         redessine l'icône de l'appli (icons/)
 sw.js                   service worker (hors-ligne)
 trips/                  les voyages
 ```

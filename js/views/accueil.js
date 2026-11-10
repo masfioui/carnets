@@ -49,8 +49,11 @@ export function rendre(ctx) {
 
   return `
     <div class="accueil-tete">
-      <div class="sur-titre">Mes voyages</div>
-      <h1>Carnets</h1>
+      <div>
+        <div class="sur-titre">Mes voyages</div>
+        <h1>Carnets</h1>
+      </div>
+      <img class="logo" src="icons/icon-192.png" alt="">
     </div>
     ${cartes || '<p class="vide">Aucun carnet pour l’instant.</p>'}
     <div class="actions-accueil">

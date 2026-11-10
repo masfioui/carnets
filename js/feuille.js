@@ -6,7 +6,10 @@ import { esc, lireNombre } from './util.js';
 
 const racine = () => document.getElementById('feuille');
 
+let fermeture; // minuterie de l'animation de fermeture
+
 export function ouvrirFeuille(html) {
+  clearTimeout(fermeture); // une fermeture en cours ne doit pas effacer la nouvelle feuille
   racine().innerHTML = `
     <div class="fond" data-action="fermer-fond">
       <div class="feuille" role="dialog" aria-modal="true">
@@ -17,9 +20,19 @@ export function ouvrirFeuille(html) {
   document.body.classList.add('bloque'); // empêche la page de défiler derrière
 }
 
-export function fermerFeuille() {
-  racine().innerHTML = '';
+// Ferme la feuille. Par défaut elle redescend (classe .sort, 0,2 s) puis on la
+// retire de la page. Avec immediat = true (changement d'écran) on la retire tout de suite.
+export function fermerFeuille(immediat = false) {
   document.body.classList.remove('bloque');
+  clearTimeout(fermeture);
+  const fond = racine().querySelector('.fond');
+  if (!fond) return;
+  if (immediat) {
+    racine().innerHTML = '';
+    return;
+  }
+  fond.classList.add('sort');
+  fermeture = setTimeout(() => { racine().innerHTML = ''; }, 200);
 }
 
 let minuterie;

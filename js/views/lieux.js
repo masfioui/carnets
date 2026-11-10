@@ -43,7 +43,7 @@ export function rendre(ctx) {
 
   return `
     <div class="puces">${puces}</div>
-    <div style="margin-top:14px">${liste}</div>
+    <div class="cascade" style="margin-top:14px">${liste}</div>
     <p class="doux petit" style="margin:16px 2px 0">
       Infos vérifiées le ${new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(voyage.majLe))}.
       Appuie sur un lieu pour voir le prix, les horaires et la source.
@@ -53,6 +53,6 @@ export function rendre(ctx) {
 export const actions = {
   filtrer(el, ctx) {
     ctx.ui.categorie = el.dataset.cat;
-    ctx.rendre();
+    ctx.rendre(true);
   },
 };

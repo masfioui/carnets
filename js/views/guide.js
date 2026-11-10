@@ -177,7 +177,7 @@ if ('speechSynthesis' in window) speechSynthesis.getVoices();
 export const actions = {
   section(el, ctx) {
     ctx.ui.guide = el.dataset.section;
-    ctx.rendre();
+    ctx.rendre(true);
     window.scrollTo(0, 0);
   },
   ecouter(el, ctx) {

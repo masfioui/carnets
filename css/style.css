@@ -369,3 +369,84 @@ svg { display: block; flex: none; }
   opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 60; text-align: center;
 }
 #toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* ============================================================
+   Animations
+   Règles suivies pour que ça reste fluide et sans bug :
+   - on n'anime que transform et opacity (le téléphone les gère sans recalculer la page) ;
+   - les animations d'entrée ne jouent que sous la classe .entree, posée par js/app.js
+     quand on CHANGE d'écran. Cocher une case redessine l'écran sans cette classe,
+     donc rien ne clignote ;
+   - tout est coupé si l'iPhone est réglé sur "Réduire les animations".
+   ============================================================ */
+
+/* --- Entrée d'un écran : les blocs montent l'un après l'autre --- */
+@keyframes apparait { from { opacity: 0; transform: translateY(14px); } }
+.entree > *, .entree .cascade > * { animation: apparait .45s cubic-bezier(.2, .8, .2, 1) backwards; }
+.entree > .cascade { animation: none; }
+.entree > :nth-child(2), .entree .cascade > :nth-child(2) { animation-delay: .04s; }
+.entree > :nth-child(3), .entree .cascade > :nth-child(3) { animation-delay: .08s; }
+.entree > :nth-child(4), .entree .cascade > :nth-child(4) { animation-delay: .12s; }
+.entree > :nth-child(5), .entree .cascade > :nth-child(5) { animation-delay: .16s; }
+.entree > :nth-child(6), .entree .cascade > :nth-child(6) { animation-delay: .20s; }
+.entree > :nth-child(7), .entree .cascade > :nth-child(7) { animation-delay: .24s; }
+.entree > :nth-child(8), .entree .cascade > :nth-child(8) { animation-delay: .28s; }
+.entree > :nth-child(9), .entree .cascade > :nth-child(9) { animation-delay: .32s; }
+.entree > :nth-child(n+10), .entree .cascade > :nth-child(n+10) { animation-delay: .36s; }
+
+/* --- Photos : celle du jour se pose doucement, celle de l'accueil dérive lentement --- */
+@keyframes pose { from { opacity: 0; transform: scale(1.08); } }
+.entree .jour-photo img { animation: pose .9s cubic-bezier(.2, .8, .2, 1); }
+.photo-tete { animation: fondu .4s ease-out; }
+@keyframes derive { from { transform: scale(1); } to { transform: scale(1.1); } }
+.voyage { isolation: isolate; } /* garde les coins arrondis pendant que la photo bouge */
+.voyage-fond { animation: derive 24s ease-in-out infinite alternate; transform-origin: 60% 35%; }
+
+/* --- Retour tactile : ce qu'on touche s'enfonce légèrement --- */
+.voyage, .act, .lieu, .rond, .puce, .jour-btn, .btn, .repere, .onglet svg { transition: transform .16s ease; }
+.voyage:active { transform: scale(.975); }
+.act:active, .lieu:active { transform: scale(.985); }
+.puce:active, .jour-btn:active, .btn:active { transform: scale(.96); }
+.rond:active { transform: scale(.9); }
+.onglet:active svg { transform: scale(.86); }
+
+/* --- Case cochée : rebond + onde (la classe .pop est posée par js/app.js) --- */
+.coche { position: relative; }
+@keyframes rebond { 0% { transform: scale(.6); } 55% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes onde { from { transform: scale(1); opacity: .7; } to { transform: scale(2.1); opacity: 0; } }
+.coche.pop > span { animation: rebond .4s ease-out; }
+.coche.pop::after {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px;
+  border-radius: 50%; border: 2px solid var(--accent); pointer-events: none;
+  animation: onde .5s ease-out forwards;
+}
+
+/* --- Barres de progression : elles glissent vers leur nouvelle valeur --- */
+.barre > i { transition: width .6s cubic-bezier(.2, .8, .2, 1); }
+
+/* --- Onglets : petit trait au-dessus de l'onglet actif, icône qui rebondit --- */
+.onglet { position: relative; }
+.onglet.actif::before {
+  content: ""; position: absolute; top: -6px; left: 50%; width: 22px; height: 3px; margin-left: -11px;
+  border-radius: 0 0 3px 3px; background: var(--accent);
+  animation: trait .3s cubic-bezier(.2, .8, .2, 1);
+}
+@keyframes trait { from { transform: scaleX(0); opacity: 0; } }
+.onglet.actif svg { animation: rebond .4s ease-out; }
+
+/* --- Feuille : elle redescend au lieu de disparaître d'un coup --- */
+.feuille { animation: monte .32s cubic-bezier(.2, .9, .25, 1); }
+.fond.sort { pointer-events: none; animation: fonduSort .2s ease-in forwards; }
+.fond.sort .feuille { animation: descend .2s ease-in forwards; }
+@keyframes fonduSort { to { opacity: 0; } }
+@keyframes descend { to { transform: translateY(60px); } }
+
+/* --- Logo sur l'accueil --- */
+.accueil-tete { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.logo { width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--trait); margin-bottom: 4px; }
+
+/* --- Réglage iPhone "Réduire les animations" : on coupe tout --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .fond.sort { opacity: 0; }
+}

@@ -148,7 +148,7 @@ export function rendre(ctx) {
 export const actions = {
   jour(el, ctx) {
     ctx.ui.jour = el.dataset.date;
-    ctx.rendre();
+    ctx.rendre(true); // true = avec l'animation d'entrée
     window.scrollTo(0, 0);
   },
   cocher(el, ctx) {

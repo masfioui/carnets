@@ -54,18 +54,34 @@ function lireAdresse() {
   return null;
 }
 
+// Fait glisser les barres de progression de leur ancienne largeur vers la nouvelle.
+// "avant" = les largeurs relevées avant de redessiner (null = partir de zéro).
+function animerBarres(zone, avant) {
+  const barres = [...zone.querySelectorAll('.barre > i')];
+  if (avant && avant.length !== barres.length) return; // l'écran a changé de forme : pas d'animation
+  for (const [n, barre] of barres.entries()) {
+    const fin = barre.style.width;
+    barre.style.width = avant ? avant[n] : '0%';
+    barre.offsetWidth; // oblige le navigateur à prendre en compte la largeur de départ
+    barre.style.width = fin;
+  }
+}
+
 // Redessine tout l'écran. Appelé à chaque changement d'adresse.
-function afficher() {
-  fermerFeuille();
+// anime = true quand on arrive sur l'écran : les blocs entrent en cascade (classe .entree).
+function afficher(anime = false) {
+  fermerFeuille(true);
   const adresse = lireAdresse();
 
   if (!adresse) {
     vueCourante = accueil;
-    ctx = { index, voyages, store, rendre: afficher };
+    ctx = { index, voyages, store, rendre: () => afficher() };
     document.documentElement.style.removeProperty('--accent');
     barre.hidden = true;
+    racine.classList.toggle('entree', anime);
     racine.innerHTML = accueil.rendre(ctx);
     accueil.monter?.(racine, ctx);
+    if (anime) animerBarres(racine, null);
     return;
   }
 
@@ -80,6 +96,7 @@ function afficher() {
   };
   document.documentElement.style.setProperty('--accent', voyage.accent || '#E0A458');
 
+  racine.classList.remove('entree');
   racine.innerHTML = `
     <header class="entete">
       <a class="rond" href="#/" aria-label="Mes carnets">${icon('chevron-left')}</a>
@@ -96,17 +113,21 @@ function afficher() {
       ${icon(icone, 24)}<span>${nom}</span>
     </a>`).join('');
 
-  rendreVue();
+  rendreVue(anime);
   majTauxAuto(voyage, ctx.etat);
 }
 
 // Redessine seulement le contenu de l'onglet (après une case cochée par exemple).
 // La position de défilement est conservée.
-function rendreVue() {
+// anime = true seulement quand le contenu change vraiment (autre onglet, autre jour, autre filtre).
+function rendreVue(anime = false) {
   const zone = document.getElementById('vue');
   if (!zone) return afficher();
+  const avant = anime ? null : [...zone.querySelectorAll('.barre > i')].map((b) => b.style.width);
+  zone.classList.toggle('entree', anime === true);
   zone.innerHTML = vueCourante.rendre(ctx);
   vueCourante.monter?.(zone, ctx);
+  animerBarres(zone, avant);
 }
 
 // Met le taux à jour en arrière-plan quand il y a du réseau.
@@ -138,11 +159,23 @@ document.addEventListener('click', (e) => {
   const el = e.target.closest('[data-action]');
   if (!el) return;
   const action = vueCourante.actions?.[el.dataset.action] ?? actionsCommunes[el.dataset.action];
-  if (action) action(el, ctx, e);
+  if (!action) return;
+  action(el, ctx, e);
+
+  // Case cochée : l'écran vient d'être redessiné, on retrouve la nouvelle case
+  // (même data-cle ou data-id) pour lui donner l'animation de rebond.
+  if (el.classList.contains('coche')) {
+    const nouvelle = [...document.querySelectorAll('.coche')]
+      .find((c) => c.dataset.cle === el.dataset.cle && c.dataset.id === el.dataset.id);
+    if (nouvelle?.getAttribute('aria-pressed') === 'true') nouvelle.classList.add('pop');
+  }
 });
 
+// Sur iPhone, l'effet "enfoncé" du CSS (:active) ne marche que si la page écoute le toucher.
+document.addEventListener('touchstart', () => {}, { passive: true });
+
 window.addEventListener('hashchange', () => {
-  afficher();
+  afficher(true);
   window.scrollTo(0, 0);
 });
 
@@ -154,7 +187,7 @@ if ('serviceWorker' in navigator && (!enLocal || location.search.includes('sw=1'
 }
 
 charger()
-  .then(afficher)
+  .then(() => afficher(true))
   .catch((erreur) => {
     console.error(erreur);
     racine.innerHTML = '<p class="chargement">Impossible de charger les carnets. Vérifie ta connexion puis rouvre l’appli.</p>';
