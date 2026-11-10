@@ -1,0 +1,710 @@
+{
+  "schema": 1,
+  "id": "istanbul",
+  "nom": "Istanbul",
+  "pays": "Turquie",
+  "ville": "Istanbul",
+  "dates": { "debut": "2027-01-17", "fin": "2027-01-23" },
+  "accent": "#E0A458",
+  "voyageurs": 4,
+  "majLe": "2026-11-10",
+
+  "devise": {
+    "code": "TRY",
+    "symbole": "₺",
+    "nom": "livre turque",
+    "taux": 56.32,
+    "date": "2026-11-10",
+    "source": "Frankfurter (taux de référence)"
+  },
+
+  "langue": { "code": "tr-TR", "nom": "turc" },
+
+  "logement": {
+    "nom": "Astro Suites",
+    "adresse": "Vefa Caddesi, Fatih, 34134 Istanbul",
+    "maps": "Astro Suites, Vefa Caddesi, Fatih, Istanbul",
+    "note": "Métro Vezneciler (ligne M2) à environ 7 min à pied, Süleymaniye à 3-5 min, Grand Bazar à environ 14 min. Distances tirées des fiches Expedia/Trip.com de l'hôtel, à confirmer sur place."
+  },
+
+  "aSavoir": [
+    {
+      "titre": "Transports",
+      "texte": "Achète une Istanbulkart dès l'aéroport (165 TL la carte vide, non remboursable) et charge-la. Un trajet coûte 46,20 TL depuis le 20 juillet 2026, la correspondance 34,40 TL. Une seule carte peut en principe servir à plusieurs personnes : à vérifier au premier portique.",
+      "date": "2026-11-10",
+      "source": "feribotseferleri.com.tr, istanbulclues.com",
+      "statut": "à vérifier"
+    },
+    {
+      "titre": "Depuis l'hôtel",
+      "texte": "Métro M2 à Vezneciler : direct jusqu'à Şişhane (Galata) et Taksim. Tram T1 (arrêts Laleli-Üniversite ou Beyazıt) : Sultanahmet, Eminönü, Karaköy, Kabataş. Tram T5 le long de la Corne d'Or : Fener, Balat, Eyüp. Marmaray depuis Sirkeci : Üsküdar en une station sous le Bosphore.",
+      "date": "2026-11-10",
+      "source": "connaissance générale du réseau, itinéraires à confirmer dans Google Maps",
+      "statut": "à vérifier"
+    },
+    {
+      "titre": "Aéroport",
+      "texte": "Arrivée et départ à Sabiha Gökçen (SAW), côté asiatique, loin de l'hôtel. En transports : métro M4 de l'aéroport jusqu'à Ayrılık Çeşmesi, Marmaray jusqu'à Yenikapı, puis M2 une station jusqu'à Vezneciler. Compte 1 h 30 à 2 h et trois trajets d'Istanbulkart. À quatre avec des valises, le taxi se partage bien : prix relevés entre 650 et 1 580 TL la course selon les sources, 45 à 75 min selon le trafic. Bus Havabus vers Taksim : 220 ou 440 TL selon les sources, 90 à 130 min.",
+      "date": "2026-11-10",
+      "source": "thebettervacation.com, kingsworldtransfer.com, antalyatransfer.taxi (prix contradictoires)",
+      "statut": "à vérifier"
+    },
+    {
+      "titre": "Argent",
+      "texte": "Change tes euros à Fatih plutôt qu'à Taksim (meilleur taux, conseil du vlog). Au terminal de carte, paie toujours en livres turques, jamais en euros. Garde du liquide pour les lokantas, les bazars et le thé.",
+      "date": "2026-11-10",
+      "source": "vlog fourni + holafly.com",
+      "statut": "à vérifier"
+    },
+    {
+      "titre": "Mosquées",
+      "texte": "Entrée gratuite. Fermées aux visiteurs pendant les cinq prières (environ 30 min) et le vendredi jusque vers 14 h 30. On enlève ses chaussures : prends des chaussettes correctes. Épaules et jambes couvertes, foulard pour les femmes.",
+      "date": "2026-11-10",
+      "source": "istanbul.com, istanbultravelblog.com",
+      "statut": "vérifié"
+    },
+    {
+      "titre": "Janvier",
+      "texte": "Froid et humide, pluie fréquente, vent sur le Bosphore. Le soleil se couche vers 17 h : les vues (Galata, Salacak, Pierre Loti) se font en fin d'après-midi. Les prix des musées et des transports augmentent souvent au 1er janvier : redemande une vérification la semaine avant le départ.",
+      "date": "2026-11-10",
+      "source": "estimation, non vérifiée en ligne",
+      "statut": "à vérifier"
+    },
+    {
+      "titre": "Santé",
+      "texte": "Les pharmacies s'appellent Eczane et ont une enseigne rouge. La pharmacie de garde s'appelle « nöbetçi eczane ».",
+      "date": "2026-11-10",
+      "source": "vlog fourni",
+      "statut": "à vérifier"
+    }
+  ],
+
+  "lieux": [
+    {
+      "id": "hotel",
+      "nom": "Astro Suites (hôtel)",
+      "categorie": "pratique",
+      "quartier": "Vefa, Fatih",
+      "maps": "Astro Suites, Vefa Caddesi, Fatih, Istanbul",
+      "conseil": "Enregistre l'adresse en turc pour les taxis : Vefa Caddesi, Fatih."
+    },
+    {
+      "id": "suleymaniye",
+      "nom": "Mosquée Süleymaniye",
+      "categorie": "visite",
+      "quartier": "Fatih",
+      "maps": "Süleymaniye Camii, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com", "url": "https://istanbul.com/suleymaniye-mosque", "statut": "vérifié" },
+      "horaires": { "texte": "Environ 9 h - 18 h, hors heures de prière", "statut": "à vérifier" },
+      "fermeture": "Fermée aux visiteurs le vendredi jusque vers 14 h 30",
+      "duree": "45 min",
+      "conseil": "À 3-5 min de l'hôtel. Passe derrière la mosquée : la terrasse du jardin donne sur la Corne d'Or et Galata."
+    },
+    {
+      "id": "vefa-bozacisi",
+      "nom": "Vefa Bozacısı",
+      "categorie": "manger",
+      "quartier": "Vefa, Fatih",
+      "maps": "Vefa Bozacısı, Istanbul",
+      "prix": { "texte": "Boza : 50 à 120 TL", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com (avril 2026), fourchette variable selon la page", "url": "https://istanbul.com/blog/street-food/istanbul-street-food-25-must-try-flavors", "statut": "à vérifier" },
+      "horaires": { "texte": "8 h - minuit tous les jours", "statut": "à vérifier" },
+      "duree": "20 min",
+      "conseil": "Institution du quartier, dans la rue de ton hôtel. La boza est une boisson d'hiver épaisse au millet fermenté, servie avec cannelle et pois chiches grillés."
+    },
+    {
+      "id": "ali-baba",
+      "nom": "Erzincanlı Ali Baba",
+      "categorie": "manger",
+      "quartier": "Süleymaniye, Fatih",
+      "maps": "Erzincanlı Ali Baba Kuru Fasulye, Süleymaniye, Istanbul",
+      "prix": { "texte": "Prix non trouvé (lokanta : 150 à 400 TL l'assiette en général)", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "tablejourney.com pour la fourchette générale", "url": "https://tablejourney.com/turkey/budget-eating/", "statut": "à vérifier" },
+      "horaires": { "texte": "11 h - 21 h (source de 2015)", "statut": "à vérifier" },
+      "duree": "45 min",
+      "conseil": "Face à la mosquée, ouvert depuis 1924. On y vient pour le trio haricots blancs (kuru fasulye), riz et pickles."
+    },
+    {
+      "id": "seref-buryan",
+      "nom": "Siirt Şeref Büryan Kebap",
+      "categorie": "manger",
+      "quartier": "Kadınlar Pazarı, Fatih",
+      "maps": "Siirt Şeref Büryan Kebap, İtfaiye Caddesi, Fatih, Istanbul",
+      "prix": { "texte": "Environ 1 500 TL par personne", "montant": 1500, "devise": "TRY", "date": "2026-11-10", "source": "mesprestiges.com (mai 2026), une seule source", "url": "https://mesprestiges.com/en/istanbul/places/siirt-seref-buryan", "statut": "à vérifier" },
+      "horaires": { "texte": "8 h - 22 h", "statut": "à vérifier" },
+      "duree": "1 h",
+      "conseil": "Agneau büryan cuit en fosse et perde pilavı (riz en croûte). Viens tôt pour les meilleurs morceaux. Demande les prix avant de commander."
+    },
+    {
+      "id": "hafiz-mustafa",
+      "nom": "Hafız Mustafa 1864",
+      "categorie": "manger",
+      "quartier": "Sirkeci",
+      "maps": "Hafız Mustafa 1864 Sirkeci, Istanbul",
+      "prix": { "texte": "Prix non trouvé", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "aucune source fiable trouvée", "statut": "à vérifier" },
+      "horaires": { "texte": "Non vérifiés", "statut": "à vérifier" },
+      "duree": "30 min",
+      "conseil": "Conseil du vlog : künefe et trileçe. Il existe aussi une adresse à Taksim."
+    },
+    {
+      "id": "ayasofya",
+      "nom": "Sainte-Sophie",
+      "categorie": "visite",
+      "quartier": "Sultanahmet",
+      "maps": "Ayasofya Camii, Istanbul",
+      "prix": { "texte": "25 €", "montant": 25, "devise": "EUR", "date": "2026-11-10", "source": "wego.com (oct. 2026), hagiasophia.com", "url": "https://blog.wego.com/hagia-sophia-visitor-guide/", "statut": "vérifié" },
+      "horaires": { "texte": "9 h - 19 h 30 selon la plupart des sources, 17 h en hiver selon une autre", "statut": "à vérifier" },
+      "fermeture": "Fermée aux visiteurs le vendredi d'environ 12 h à 14 h 30",
+      "duree": "1 h",
+      "conseil": "Le billet touriste donne accès à la galerie haute uniquement, par une entrée séparée côté nord-est. Sois là à l'ouverture, la file grossit vite."
+    },
+    {
+      "id": "mosquee-bleue",
+      "nom": "Mosquée Bleue",
+      "categorie": "visite",
+      "quartier": "Sultanahmet",
+      "maps": "Sultanahmet Camii, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "istanbultravelblog.com", "url": "https://istanbultravelblog.com/istanbul-mosques-opening-hours/", "statut": "vérifié" },
+      "horaires": { "texte": "Environ 8 h 30 - 17 h 30 en hiver, hors heures de prière", "statut": "à vérifier" },
+      "duree": "30 min",
+      "conseil": "Vas-y avant la prière de midi. Chaussettes et tenue couvrante."
+    },
+    {
+      "id": "hippodrome",
+      "nom": "Hippodrome (place Sultanahmet)",
+      "categorie": "balade",
+      "quartier": "Sultanahmet",
+      "maps": "Sultanahmet Meydanı, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "place publique", "statut": "vérifié" },
+      "duree": "15 min",
+      "conseil": "L'obélisque égyptien, la colonne serpentine et la fontaine allemande tiennent sur la même place."
+    },
+    {
+      "id": "sultanahmet-koftecisi",
+      "nom": "Tarihi Sultanahmet Köftecisi",
+      "categorie": "manger",
+      "quartier": "Sultanahmet",
+      "maps": "Tarihi Sultanahmet Köftecisi Selim Usta, Istanbul",
+      "prix": { "texte": "Prix non trouvé", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "adresse connue, non revérifiée en ligne", "statut": "à vérifier" },
+      "duree": "40 min",
+      "conseil": "Köfte grillées, service rapide entre deux visites. Vérifie que c'est bien l'enseigne « Selim Usta », il y a des imitations dans la rue."
+    },
+    {
+      "id": "topkapi",
+      "nom": "Palais de Topkapi + Harem",
+      "categorie": "visite",
+      "quartier": "Sultanahmet",
+      "maps": "Topkapı Sarayı Müzesi, Istanbul",
+      "prix": { "texte": "2 750 TL (palais, Harem et Sainte-Irène)", "montant": 2750, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com (juillet 2026), istanbulclues.com", "url": "https://istanbul.com/topkapi-palace", "statut": "vérifié" },
+      "horaires": { "texte": "Guichets 9 h - 17 h en hiver", "statut": "à vérifier" },
+      "fermeture": "Fermé le mardi",
+      "duree": "3 h",
+      "conseil": "Commence par le Harem puis le Trésor, ce sont les deux salles qui ferment en premier. La terrasse du fond donne sur le Bosphore."
+    },
+    {
+      "id": "citerne",
+      "nom": "Citerne Basilique",
+      "categorie": "visite",
+      "quartier": "Sultanahmet",
+      "maps": "Yerebatan Sarnıcı, Istanbul",
+      "prix": { "texte": "1 950 TL en journée, 3 000 TL en nocturne", "montant": 1950, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com, myturkeyadventure.com. Changement d'exploitant le 2 juin 2026 : tarif à confirmer", "url": "https://istanbul.com/basilica-cistern", "statut": "à vérifier" },
+      "horaires": { "texte": "9 h - 18 h 30, nocturne 19 h 30 - 22 h", "statut": "à vérifier" },
+      "duree": "40 min",
+      "conseil": "Paiement par carte uniquement selon une source. Les deux têtes de Méduse sont tout au fond."
+    },
+    {
+      "id": "grand-bazar",
+      "nom": "Grand Bazar",
+      "categorie": "shopping",
+      "quartier": "Beyazıt, Fatih",
+      "maps": "Kapalıçarşı, Istanbul",
+      "prix": { "texte": "Entrée gratuite", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com, timeout.com", "url": "https://istanbul.com/blog/exploring-grand-bazaar", "statut": "vérifié" },
+      "horaires": { "texte": "8 h 30 - 19 h, du lundi au samedi", "statut": "vérifié" },
+      "fermeture": "Fermé le dimanche et les jours de fête religieuse",
+      "duree": "1 h 30",
+      "conseil": "Divise le premier prix annoncé par deux et remonte doucement. Ne réponds pas « d'où tu viens ? » si tu ne veux pas acheter."
+    },
+    {
+      "id": "bazar-egyptien",
+      "nom": "Bazar égyptien (aux épices)",
+      "categorie": "shopping",
+      "quartier": "Eminönü",
+      "maps": "Mısır Çarşısı, Istanbul",
+      "prix": { "texte": "Entrée gratuite", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com", "url": "https://istanbul.com/spice-bazaar", "statut": "vérifié" },
+      "horaires": { "texte": "Environ 8 h - 19 h 30, à partir de 9 h 30 le dimanche", "statut": "à vérifier" },
+      "duree": "45 min",
+      "conseil": "Loukoums, épices et thé à rapporter. Les rues autour du bazar sont moins chères que l'intérieur."
+    },
+    {
+      "id": "eminonu",
+      "nom": "Quais d'Eminönü et pont de Galata",
+      "categorie": "balade",
+      "quartier": "Eminönü",
+      "maps": "Tarihi Eminönü Balık Ekmek, Istanbul",
+      "prix": { "texte": "Balık ekmek : prix non trouvé", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "aucune source fiable trouvée", "statut": "à vérifier" },
+      "duree": "45 min",
+      "conseil": "Sandwich au poisson (balık ekmek) sur les bateaux à quai, puis traversée du pont à pied au milieu des pêcheurs."
+    },
+    {
+      "id": "galata",
+      "nom": "Tour de Galata",
+      "categorie": "visite",
+      "quartier": "Galata, Beyoğlu",
+      "maps": "Galata Kulesi, Istanbul",
+      "prix": { "texte": "30 €", "montant": 30, "devise": "EUR", "date": "2026-11-10", "source": "istanbulclues.com, thebettervacation.com", "url": "https://istanbulclues.com/galata-tower-entrance-fee", "statut": "vérifié" },
+      "horaires": { "texte": "8 h 30 - 23 h, dernière entrée 1 h avant", "statut": "à vérifier" },
+      "duree": "45 min",
+      "conseil": "Coucher du soleil vers 17 h en janvier : sois dans la file à 16 h. Une source parle d'un billet séparé après 19 h."
+    },
+    {
+      "id": "istiklal",
+      "nom": "Avenue İstiklal",
+      "categorie": "balade",
+      "quartier": "Beyoğlu",
+      "maps": "İstiklal Caddesi, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "rue publique", "statut": "vérifié" },
+      "duree": "1 h",
+      "conseil": "1,4 km piétons de Galata à Taksim. Refuse la lecture des lignes de la main (1 500 TL demandés) et les invitations dans un bar."
+    },
+    {
+      "id": "taksim",
+      "nom": "Place Taksim",
+      "categorie": "balade",
+      "quartier": "Beyoğlu",
+      "maps": "Taksim Meydanı, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "place publique", "statut": "vérifié" },
+      "duree": "20 min",
+      "conseil": "Métro M2 direct jusqu'à Vezneciler pour rentrer. Évite le chawarma de nuit ici (conseil du vlog)."
+    },
+    {
+      "id": "dolmabahce",
+      "nom": "Palais de Dolmabahçe",
+      "categorie": "visite",
+      "quartier": "Beşiktaş",
+      "maps": "Dolmabahçe Sarayı, Istanbul",
+      "prix": { "texte": "2 000 TL (Selamlık, Harem, musée de peinture)", "montant": 2000, "devise": "TRY", "date": "2026-11-10", "source": "istanbul.com, istanbulclues.com (mi-2026)", "url": "https://istanbul.com/dolmabahce-palace", "statut": "vérifié" },
+      "horaires": { "texte": "9 h - 17 h environ, guichet fermé vers 16 h", "statut": "à vérifier" },
+      "fermeture": "Fermé le lundi",
+      "duree": "2 h 30",
+      "conseil": "Arrive à l'ouverture. Audioguide en général inclus. Billets officiels sur millisaraylar.gov.tr."
+    },
+    {
+      "id": "ortakoy",
+      "nom": "Ortaköy",
+      "categorie": "balade",
+      "quartier": "Beşiktaş",
+      "maps": "Ortaköy Camii, Istanbul",
+      "prix": { "texte": "Gratuit (kumpir : prix non trouvé)", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "place publique", "statut": "à vérifier" },
+      "duree": "1 h",
+      "conseil": "La mosquée au pied du pont du Bosphore est la photo du voyage. Sur la place, goûte le kumpir (pomme de terre garnie)."
+    },
+    {
+      "id": "bebek",
+      "nom": "Bebek",
+      "categorie": "balade",
+      "quartier": "Beşiktaş",
+      "maps": "Bebek Sahili, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "promenade publique", "statut": "vérifié" },
+      "duree": "1 h",
+      "conseil": "Promenade au bord du Bosphore et cafés chics. Rentre vers Kabataş assez tôt pour la croisière."
+    },
+    {
+      "id": "croisiere",
+      "nom": "Croisière dîner-spectacle sur le Bosphore",
+      "categorie": "visite",
+      "quartier": "Départ Kabataş",
+      "maps": "Kabataş İskelesi, Istanbul",
+      "prix": { "texte": "21 à 42 € selon boissons et transfert", "montant": 35, "devise": "EUR", "date": "2026-11-10", "source": "thebettervacation.com, headout.com (à partir de 26,25 €)", "url": "https://thebettervacation.com/istanbul/bosphorus-dinner-cruise/", "statut": "à vérifier" },
+      "horaires": { "texte": "Prise en charge vers 19 h - 19 h 30 selon l'opérateur", "statut": "à vérifier" },
+      "duree": "3 h",
+      "conseil": "À réserver avant le départ. Vérifie que ton hôtel à Fatih est dans la zone de transfert, sinon rendez-vous à l'embarcadère. Le vlog la payait environ 35 €."
+    },
+    {
+      "id": "kadikoy",
+      "nom": "Marché de Kadıköy",
+      "categorie": "balade",
+      "quartier": "Kadıköy (rive asiatique)",
+      "maps": "Kadıköy Çarşısı, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "quartier public", "statut": "vérifié" },
+      "duree": "1 h 30",
+      "conseil": "Le ferry depuis Eminönü coûte un trajet d'Istanbulkart et vaut une mini-croisière. Mets-toi dehors côté droit."
+    },
+    {
+      "id": "ciya",
+      "nom": "Çiya Sofrası",
+      "categorie": "manger",
+      "quartier": "Kadıköy",
+      "maps": "Çiya Sofrası, Kadıköy, Istanbul",
+      "prix": { "texte": "Prix non trouvé", "montant": null, "devise": "TRY", "date": "2026-11-10", "source": "adresse connue, non revérifiée en ligne", "statut": "à vérifier" },
+      "duree": "1 h",
+      "conseil": "Cuisine anatolienne régionale, plats du jour au comptoir. Montre du doigt ce qui te tente."
+    },
+    {
+      "id": "moda",
+      "nom": "Moda",
+      "categorie": "balade",
+      "quartier": "Kadıköy",
+      "maps": "Moda Sahili, Kadıköy, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "promenade publique", "statut": "vérifié" },
+      "duree": "1 h",
+      "conseil": "Balade le long de la mer et thé dans un jardin de thé face à la vieille ville."
+    },
+    {
+      "id": "camlica",
+      "nom": "Çamlıca (tour et grande mosquée)",
+      "categorie": "visite",
+      "quartier": "Üsküdar",
+      "maps": "Çamlıca Kulesi, Istanbul",
+      "prix": { "texte": "Tour : 900 TL. Mosquée et colline : gratuit", "montant": 900, "devise": "TRY", "date": "2026-11-10", "source": "bilet.com, istanbul.com (mi-2026)", "url": "https://bilet.com/en/activity/camlica-kulesi", "statut": "à vérifier" },
+      "horaires": { "texte": "Tour : 10 h - 22 h tous les jours", "statut": "à vérifier" },
+      "duree": "1 h 30",
+      "conseil": "Par temps couvert, saute la tour et garde les 900 TL : la vue depuis la colline et la mosquée est gratuite."
+    },
+    {
+      "id": "salacak",
+      "nom": "Üsküdar et Salacak",
+      "categorie": "balade",
+      "quartier": "Üsküdar",
+      "maps": "Salacak Sahili, Üsküdar, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "promenade publique", "statut": "vérifié" },
+      "duree": "1 h",
+      "conseil": "Le meilleur coucher de soleil de la ville : la Tour de Léandre devant, la vieille ville derrière. Thé sur les marches."
+    },
+    {
+      "id": "kiz-kulesi",
+      "nom": "Tour de Léandre (Kız Kulesi)",
+      "categorie": "visite",
+      "quartier": "Üsküdar",
+      "maps": "Kız Kulesi, Istanbul",
+      "prix": { "texte": "27 € + 5 € de bateau", "montant": 32, "devise": "EUR", "date": "2026-11-10", "source": "muze.gen.tr", "url": "https://muze.gen.tr/muze-detay/kizkulesi", "statut": "vérifié" },
+      "horaires": { "texte": "Bateaux depuis Salacak 10 h - 16 h, depuis Karaköy 9 h 30 - 17 h", "statut": "à vérifier" },
+      "duree": "1 h",
+      "conseil": "Optionnel : la tour se regarde très bien depuis Salacak sans payer. Les bateaux s'arrêtent par mauvais temps."
+    },
+    {
+      "id": "hammam",
+      "nom": "Çemberlitaş Hamamı",
+      "categorie": "visite",
+      "quartier": "Çemberlitaş, Fatih",
+      "maps": "Çemberlitaş Hamamı, Istanbul",
+      "prix": { "texte": "De 1 200 à 2 100 TL en libre-service, environ 2 650 TL avec gommage (sources contradictoires)", "montant": 2650, "devise": "TRY", "date": "2026-11-10", "source": "thebettervacation.com, istanbul.com (mai 2026)", "url": "https://thebettervacation.com/istanbul/turkish-bath-cemberlitas-hamam/", "statut": "à vérifier" },
+      "horaires": { "texte": "6 h - minuit selon une source, 9 h - 22 h selon une autre", "statut": "à vérifier" },
+      "duree": "1 h 30",
+      "conseil": "Hammam de 1584, sections hommes et femmes séparées. Le forfait traditionnel comprend vapeur, gommage et massage à la mousse. Appelle ou passe la veille pour le prix exact."
+    },
+    {
+      "id": "fener",
+      "nom": "Fener",
+      "categorie": "balade",
+      "quartier": "Fener, Fatih",
+      "maps": "Özel Fener Rum Lisesi, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "quartier public", "statut": "vérifié" },
+      "duree": "45 min",
+      "conseil": "Le grand lycée grec en brique rouge se voit de l'extérieur. Le Patriarcat œcuménique est en contrebas, entrée libre."
+    },
+    {
+      "id": "balat",
+      "nom": "Balat",
+      "categorie": "balade",
+      "quartier": "Balat, Fatih",
+      "maps": "Kiremit Caddesi, Balat, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "quartier public", "statut": "vérifié" },
+      "duree": "1 h 30",
+      "conseil": "Les maisons colorées sont sur Kiremit Caddesi. Viens le matin avant la foule, puis café dans les rues autour."
+    },
+    {
+      "id": "eyup",
+      "nom": "Mosquée Eyüp Sultan",
+      "categorie": "visite",
+      "quartier": "Eyüp",
+      "maps": "Eyüp Sultan Camii, Istanbul",
+      "prix": { "texte": "Gratuit", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "myturkeyadventure.com", "url": "https://myturkeyadventure.com/blog/eyup-sultan-ottoman-cemetery-pierre-loti-istanbul-guide", "statut": "vérifié" },
+      "duree": "30 min",
+      "conseil": "Lieu de pèlerinage très fréquenté le vendredi midi : passe après 14 h 30."
+    },
+    {
+      "id": "pierre-loti",
+      "nom": "Colline Pierre Loti",
+      "categorie": "balade",
+      "quartier": "Eyüp",
+      "maps": "Pierre Loti Tepesi, Eyüp, Istanbul",
+      "prix": { "texte": "Téléphérique : 35 TL avec Istanbulkart, 40 TL sans. Colline gratuite", "montant": 35, "devise": "TRY", "date": "2026-11-10", "source": "thebettervacation.com, guidedistanbultours.com", "url": "https://thebettervacation.com/istanbul/pierre-loti-hill/", "statut": "vérifié" },
+      "horaires": { "texte": "Téléphérique 8 h - 22 h ou 23 h", "statut": "à vérifier" },
+      "duree": "1 h",
+      "conseil": "Thé en terrasse au-dessus de la Corne d'Or. S'il y a la queue au téléphérique, la montée à pied par le cimetière prend 15 min."
+    },
+    {
+      "id": "fevzi-pasa",
+      "nom": "Shopping à Fatih (Fevzi Paşa Caddesi)",
+      "categorie": "shopping",
+      "quartier": "Fatih",
+      "maps": "Fevzi Paşa Caddesi, Fatih, Istanbul",
+      "prix": { "texte": "Entrée libre", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "rue publique", "statut": "vérifié" },
+      "duree": "1 h 30",
+      "conseil": "L'artère commerçante du quartier, prix locaux. C'est aussi par ici qu'on change ses euros au meilleur taux selon le vlog."
+    },
+    {
+      "id": "olivium",
+      "nom": "Olivium Outlet Center",
+      "categorie": "option",
+      "quartier": "Zeytinburnu",
+      "maps": "Olivium Outlet Center, Zeytinburnu, Istanbul",
+      "prix": { "texte": "Entrée libre", "montant": 0, "devise": "TRY", "date": "2026-11-10", "source": "wikipedia.org, nike.com", "url": "https://en.wikipedia.org/wiki/Olivium_Outlet_Center", "statut": "vérifié" },
+      "horaires": { "texte": "10 h - 22 h tous les jours", "statut": "à vérifier" },
+      "duree": "2 h",
+      "conseil": "À 800 m de la gare Marmaray de Kazlıçeşme. À faire à la place du shopping à Fatih si tu cherches des marques à prix outlet."
+    },
+    {
+      "id": "buyukada",
+      "nom": "Îles des Princes (Büyükada)",
+      "categorie": "option",
+      "quartier": "Mer de Marmara",
+      "maps": "Büyükada İskelesi, Adalar, Istanbul",
+      "prix": { "texte": "Ferry : 137,48 TL l'aller", "montant": 137.48, "devise": "TRY", "date": "2026-11-10", "source": "feribotseferleri.com.tr (d'autres guides annoncent 50 à 70 TL)", "url": "https://www.feribotseferleri.com.tr/en/kabatas-adalar", "statut": "à vérifier" },
+      "horaires": { "texte": "Environ 1 h 30 de traversée depuis Kabataş ou Eminönü. Horaires d'hiver réduits", "statut": "à vérifier" },
+      "duree": "La journée",
+      "conseil": "Option beau temps uniquement, à échanger avec le vendredi. En janvier, beaucoup de cafés sont fermés et il y a du vent. Regarde l'horaire du dernier ferry retour en arrivant."
+    }
+  ],
+
+  "jours": [
+    {
+      "date": "2027-01-17",
+      "titre": "Arrivée et premier soir à Vefa",
+      "resume": "Journée courte. Tout se fait à pied autour de l'hôtel, sans transport.",
+      "alertes": ["Le Grand Bazar est fermé le dimanche : pas la peine d'y passer aujourd'hui."],
+      "matin": [],
+      "apresMidi": [
+        { "id": "j1-carte", "titre": "Acheter et charger l'Istanbulkart à l'aéroport", "duree": "10 min", "note": "165 TL la carte + environ 500 TL de crédit pour démarrer (une dizaine de trajets)." },
+        { "id": "j1-trajet", "titre": "Trajet Sabiha Gökçen - hôtel", "duree": "1 h 30 à 2 h", "note": "Métro M4 jusqu'à Ayrılık Çeşmesi, Marmaray jusqu'à Yenikapı, M2 jusqu'à Vezneciler, puis 7 min à pied. Ou taxi à quatre (BiTaksi ou Uber), voir Guide > Pratique." },
+        { "id": "j1-hotel", "lieu": "hotel", "duree": "30 min", "note": "Pose les sacs, récupère le wifi, télécharge la zone Istanbul hors ligne dans Google Maps." },
+        { "id": "j1-change", "titre": "Changer un peu d'euros à Fatih", "duree": "20 min", "note": "Compare deux bureaux (döviz bürosu) avant de changer. Écart acceptable : moins de 1 % sous le taux de l'appli." }
+      ],
+      "soir": [
+        { "id": "j1-suleymaniye", "lieu": "suleymaniye", "trajet": "5 min à pied depuis l'hôtel", "note": "Si la salle de prière est fermée, la cour et la terrasse valent déjà le détour de nuit." },
+        { "id": "j1-diner", "lieu": "ali-baba", "trajet": "En face de la mosquée", "note": "Dîner simple et pas cher pour un premier soir." },
+        { "id": "j1-boza", "lieu": "vefa-bozacisi", "trajet": "5 min à pied, dans la rue de l'hôtel", "note": "Le dessert-boisson du quartier." }
+      ],
+      "planB": "Arrivée tardive : va directement dîner et garde Süleymaniye pour mardi matin, c'est sur le chemin du Grand Bazar."
+    },
+    {
+      "date": "2027-01-18",
+      "titre": "Sultanahmet, le cœur historique",
+      "resume": "La grosse journée de visites. Environ 108 € de billets par personne (25 € + 2 750 TL + 1 950 TL).",
+      "alertes": ["Topkapi ferme le mardi : c'est aujourd'hui ou jamais dans ce planning.", "Guichets de Topkapi fermés vers 17 h : entre avant 13 h 30."],
+      "matin": [
+        { "id": "j2-ayasofya", "lieu": "ayasofya", "heure": "9 h", "trajet": "25 min à pied, ou tram T1 de Beyazıt à Sultanahmet", "note": "Premier dans la file." },
+        { "id": "j2-bleue", "lieu": "mosquee-bleue", "heure": "10 h 15", "trajet": "5 min à pied, juste en face" },
+        { "id": "j2-hippodrome", "lieu": "hippodrome", "heure": "11 h", "trajet": "Sur la même place" },
+        { "id": "j2-dej", "lieu": "sultanahmet-koftecisi", "heure": "11 h 45", "trajet": "3 min à pied" }
+      ],
+      "apresMidi": [
+        { "id": "j2-topkapi", "lieu": "topkapi", "heure": "13 h", "trajet": "8 min à pied en passant derrière Sainte-Sophie" },
+        { "id": "j2-citerne", "lieu": "citerne", "heure": "16 h 45", "trajet": "8 min à pied", "note": "Dernière entrée de journée avant 18 h 30." }
+      ],
+      "soir": [
+        { "id": "j2-dessert", "lieu": "hafiz-mustafa", "trajet": "10 min à pied en descendant vers Sirkeci", "note": "Künefe et trileçe." },
+        { "id": "j2-retour", "titre": "Retour à l'hôtel", "trajet": "Tram T1 de Sirkeci à Beyazıt, puis 10 min à pied" }
+      ],
+      "planB": "Trop de queue à Sainte-Sophie : inverse avec Topkapi le matin et reviens à Sainte-Sophie vers 16 h. S'il pleut, rien à changer, tout est couvert."
+    },
+    {
+      "date": "2027-01-19",
+      "titre": "Bazars, Galata au coucher du soleil, Taksim",
+      "resume": "On descend à pied de l'hôtel jusqu'à la mer, puis on monte à Galata pour 17 h.",
+      "alertes": ["Coucher du soleil vers 17 h : sois dans la file de la tour de Galata à 16 h.", "İstiklal : refuse la lecture des lignes de la main et les invitations dans un bar."],
+      "matin": [
+        { "id": "j3-bazar", "lieu": "grand-bazar", "heure": "9 h 30", "trajet": "14 min à pied depuis l'hôtel" },
+        { "id": "j3-epices", "lieu": "bazar-egyptien", "heure": "11 h 15", "trajet": "15 min à pied en descendant par les rues commerçantes de Mahmutpaşa" }
+      ],
+      "apresMidi": [
+        { "id": "j3-eminonu", "lieu": "eminonu", "heure": "12 h 30", "trajet": "3 min à pied", "note": "Déjeuner balık ekmek, puis traversée du pont de Galata à pied." },
+        { "id": "j3-galata", "lieu": "galata", "heure": "16 h", "trajet": "15 min de montée à pied depuis Karaköy", "note": "Prends un café dans les ruelles autour en attendant." }
+      ],
+      "soir": [
+        { "id": "j3-istiklal", "lieu": "istiklal", "trajet": "3 min à pied depuis la tour" },
+        { "id": "j3-taksim", "lieu": "taksim", "trajet": "Au bout de l'avenue", "note": "Dîner dans une rue latérale d'İstiklal plutôt que sur la place." },
+        { "id": "j3-retour", "titre": "Retour à l'hôtel", "trajet": "Métro M2 direct de Taksim à Vezneciler, puis 7 min à pied" }
+      ],
+      "planB": "Ciel bouché : garde les 30 € de la tour de Galata et retente jeudi ou vendredi soir, le M2 y va en 2 stations."
+    },
+    {
+      "date": "2027-01-20",
+      "titre": "Le Bosphore : palais, villages et croisière",
+      "resume": "Palais le matin, bord de l'eau l'après-midi, dîner sur le bateau le soir.",
+      "alertes": ["Dolmabahçe : guichet fermé vers 16 h et entrées limitées. Vas-y dès l'ouverture.", "Croisière à réserver avant le départ, prise en charge vers 19 h."],
+      "matin": [
+        { "id": "j4-dolmabahce", "lieu": "dolmabahce", "heure": "9 h", "trajet": "Tram T1 de Beyazıt à Kabataş (terminus), puis 10 min à pied" }
+      ],
+      "apresMidi": [
+        { "id": "j4-ortakoy", "lieu": "ortakoy", "heure": "12 h 30", "trajet": "Bus le long de la côte depuis Beşiktaş, 15 à 25 min selon le trafic", "note": "Déjeuner kumpir sur la place." },
+        { "id": "j4-bebek", "lieu": "bebek", "heure": "14 h 30", "trajet": "Bus le long de la côte, environ 15 min" }
+      ],
+      "soir": [
+        { "id": "j4-croisiere", "lieu": "croisiere", "heure": "19 h", "trajet": "Bus retour vers Kabataş : pars de Bebek avant 17 h 30, la route côtière bouchonne" }
+      ],
+      "planB": "Pas de croisière réservée : prends le ferry public Eminönü - Üsküdar au coucher du soleil pour un trajet d'Istanbulkart."
+    },
+    {
+      "date": "2027-01-21",
+      "titre": "Rive asiatique et hammam",
+      "resume": "Une journée plus locale, moins de billets. On finit au hammam, à 15 min de l'hôtel.",
+      "alertes": ["Les bateaux pour la Tour de Léandre s'arrêtent vers 16 h et par mauvais temps."],
+      "matin": [
+        { "id": "j5-ferry", "titre": "Ferry Eminönü - Kadıköy", "heure": "9 h 30", "duree": "25 min", "trajet": "Tram T1 de Beyazıt à Eminönü", "note": "Un trajet d'Istanbulkart. Thé et simit à bord." },
+        { "id": "j5-kadikoy", "lieu": "kadikoy", "heure": "10 h" },
+        { "id": "j5-ciya", "lieu": "ciya", "heure": "12 h", "trajet": "Dans le marché" },
+        { "id": "j5-moda", "lieu": "moda", "heure": "13 h", "trajet": "15 min à pied" }
+      ],
+      "apresMidi": [
+        { "id": "j5-camlica", "lieu": "camlica", "heure": "14 h 30", "trajet": "Taxi (BiTaksi) depuis Moda, ou métro puis bus : regarde Google Maps" },
+        { "id": "j5-salacak", "lieu": "salacak", "heure": "16 h 15", "trajet": "Taxi ou bus en descendant vers Üsküdar", "note": "Coucher du soleil sur la vieille ville." },
+        { "id": "j5-kule", "lieu": "kiz-kulesi", "optionnel": true, "note": "Seulement si tu tiens à monter dedans et que tu arrives avant 16 h." }
+      ],
+      "soir": [
+        { "id": "j5-hammam", "lieu": "hammam", "heure": "18 h 30", "trajet": "Marmaray d'Üsküdar à Sirkeci (une station), puis tram T1 jusqu'à Çemberlitaş" },
+        { "id": "j5-diner", "titre": "Dîner en lokanta à Fatih", "trajet": "15 min à pied vers l'hôtel", "note": "Conseil du vlog : les lokantas de Fatih sont bonnes et pas chères." }
+      ],
+      "planB": "Pluie ou vent fort : remplace Çamlıca et Salacak par un long hammam en milieu d'après-midi et rentre par le Marmaray."
+    },
+    {
+      "date": "2027-01-22",
+      "titre": "Corne d'Or : Fener, Balat, Pierre Loti",
+      "resume": "Le quartier le plus photogénique le matin, la vue l'après-midi, les achats le soir.",
+      "alertes": ["Vendredi : les mosquées sont fermées aux visiteurs jusque vers 14 h 30."],
+      "matin": [
+        { "id": "j6-fener", "lieu": "fener", "heure": "9 h 30", "trajet": "Descendre à pied vers la Corne d'Or (arrêt Cibali ou Küçükpazar), puis tram T5 jusqu'à Fener" },
+        { "id": "j6-balat", "lieu": "balat", "heure": "10 h 30", "trajet": "10 min à pied le long de l'eau", "note": "Déjeuner dans un café du quartier." }
+      ],
+      "apresMidi": [
+        { "id": "j6-eyup", "lieu": "eyup", "heure": "14 h 30", "trajet": "Tram T5 de Balat à Eyüpsultan" },
+        { "id": "j6-loti", "lieu": "pierre-loti", "heure": "15 h 30", "trajet": "Téléphérique à 5 min de la mosquée", "note": "Thé en haut jusqu'au coucher du soleil." }
+      ],
+      "soir": [
+        { "id": "j6-shopping", "lieu": "fevzi-pasa", "heure": "18 h", "trajet": "Tram T5 retour, puis bus ou taxi vers Fatih" },
+        { "id": "j6-diner", "lieu": "seref-buryan", "heure": "20 h", "trajet": "10 min à pied de l'hôtel", "note": "Dernier vrai dîner : büryan et perde pilavı." }
+      ],
+      "planB": "Grand beau temps annoncé : échange cette journée contre les Îles des Princes (voir Lieux, catégorie Options) et fais Balat samedi matin. Pour des marques à prix outlet, remplace Fevzi Paşa par Olivium, ouvert jusqu'à 22 h."
+    },
+    {
+      "date": "2027-01-23",
+      "titre": "Derniers achats et départ",
+      "resume": "Matinée libre près de l'hôtel. Pars pour l'aéroport 4 h avant le vol.",
+      "alertes": ["Sabiha Gökçen est côté asiatique : compte 1 h 30 à 2 h en transports, et jusqu'à 1 h 15 en taxi avec les bouchons."],
+      "matin": [
+        { "id": "j7-valise", "titre": "Valise et check-out", "heure": "9 h", "note": "Demande à l'hôtel de garder les bagages si le vol est tard." },
+        { "id": "j7-cadeaux", "lieu": "bazar-egyptien", "heure": "10 h", "trajet": "15 min à pied en descendant", "note": "Loukoums, épices, thé. Le Grand Bazar est aussi ouvert le samedi." },
+        { "id": "j7-liquide", "titre": "Dépenser ou rechanger les livres restantes", "note": "Le taux de rachat à l'aéroport est mauvais." }
+      ],
+      "apresMidi": [
+        { "id": "j7-aeroport", "titre": "Trajet vers Sabiha Gökçen", "duree": "1 h 30 à 2 h", "note": "M2 de Vezneciler à Yenikapı, Marmaray jusqu'à Ayrılık Çeşmesi, puis M4 jusqu'au terminus. Garde trois trajets de crédit sur l'Istanbulkart. Ou taxi à quatre." }
+      ],
+      "soir": [],
+      "planB": "Vol avant 15 h : fais les cadeaux vendredi soir et pars directement après le petit-déjeuner."
+    }
+  ],
+
+  "phrases": [
+    { "cat": "Politesse", "fr": "Bonjour", "local": "Merhaba", "prononciation": "mèr-ha-ba" },
+    { "cat": "Politesse", "fr": "Merci", "local": "Teşekkür ederim", "prononciation": "té-chèk-kur é-dé-rim" },
+    { "cat": "Politesse", "fr": "S'il vous plaît", "local": "Lütfen", "prononciation": "lut-fèn" },
+    { "cat": "Politesse", "fr": "Oui / Non", "local": "Evet / Hayır", "prononciation": "é-vèt / ha-yeur" },
+    { "cat": "Politesse", "fr": "Bon courage (à un commerçant, un serveur)", "local": "Kolay gelsin", "prononciation": "ko-laï guèl-sine" },
+    { "cat": "Politesse", "fr": "Bonne soirée", "local": "İyi akşamlar", "prononciation": "i-yi ak-cham-lar" },
+    { "cat": "Acheter", "fr": "C'est combien ?", "local": "Ne kadar?", "prononciation": "né ka-dar" },
+    { "cat": "Acheter", "fr": "C'est trop cher", "local": "Çok pahalı", "prononciation": "tchok pa-ha-leu" },
+    { "cat": "Acheter", "fr": "Vous faites une réduction ?", "local": "İndirim var mı?", "prononciation": "ine-di-rime var meu" },
+    { "cat": "Acheter", "fr": "Je peux payer par carte ?", "local": "Kartla ödeyebilir miyim?", "prononciation": "kart-la eu-dé-yé-bi-lir mi-yim" },
+    { "cat": "Acheter", "fr": "Non merci, je n'en veux pas", "local": "Hayır teşekkürler, istemiyorum", "prononciation": "ha-yeur té-chèk-kur-lèr, is-té-mi-yo-roum" },
+    { "cat": "Manger", "fr": "L'addition s'il vous plaît", "local": "Hesap lütfen", "prononciation": "hé-sap lut-fèn" },
+    { "cat": "Manger", "fr": "Un thé s'il vous plaît", "local": "Bir çay lütfen", "prononciation": "bir tchaï lut-fèn" },
+    { "cat": "Manger", "fr": "De l'eau", "local": "Su", "prononciation": "sou" },
+    { "cat": "Manger", "fr": "Pas épicé", "local": "Acısız", "prononciation": "a-djeu-seuz" },
+    { "cat": "Manger", "fr": "C'était délicieux (au cuisinier)", "local": "Elinize sağlık", "prononciation": "é-li-ni-zé sa-leuk" },
+    { "cat": "Se déplacer", "fr": "Où sont les toilettes ?", "local": "Tuvalet nerede?", "prononciation": "tou-va-lèt né-ré-dé" },
+    { "cat": "Se déplacer", "fr": "Le compteur s'il vous plaît (taxi)", "local": "Taksimetre lütfen", "prononciation": "tak-si-mè-tré lut-fèn" },
+    { "cat": "Se déplacer", "fr": "Je ne comprends pas", "local": "Anlamıyorum", "prononciation": "an-la-meu-yo-roum" },
+    { "cat": "Se déplacer", "fr": "Vous parlez anglais ?", "local": "İngilizce biliyor musunuz?", "prononciation": "ine-gui-liz-djé bi-li-yor mou-sou-nouz" },
+    { "cat": "Urgence", "fr": "Aidez-moi !", "local": "Yardım edin!", "prononciation": "yar-deum é-dine" },
+    { "cat": "Urgence", "fr": "Où est la pharmacie ?", "local": "Eczane nerede?", "prononciation": "èdj-za-né né-ré-dé" }
+  ],
+
+  "plats": [
+    { "id": "kunefe", "nom": "Künefe", "description": "Cheveux d'ange chauds au fromage fondant et sirop, pistache dessus.", "ou": "Hafız Mustafa (conseil du vlog)" },
+    { "id": "trilece", "nom": "Trileçe", "description": "Gâteau aux trois laits nappé de caramel.", "ou": "Hafız Mustafa (conseil du vlog)" },
+    { "id": "boza", "nom": "Boza", "description": "Boisson d'hiver épaisse au millet fermenté, cannelle et pois chiches grillés.", "ou": "Vefa Bozacısı, dans la rue de l'hôtel" },
+    { "id": "kuru-fasulye", "nom": "Kuru fasulye", "description": "Haricots blancs mijotés, avec riz et pickles. Le plat du peuple.", "ou": "Erzincanlı Ali Baba, face à Süleymaniye" },
+    { "id": "buryan", "nom": "Büryan kebabı", "description": "Agneau cuit lentement dans une fosse, servi sur du pain.", "ou": "Siirt Şeref Büryan, Kadınlar Pazarı" },
+    { "id": "perde-pilavi", "nom": "Perde pilavı", "description": "Riz au poulet, amandes et raisins dans une croûte dorée.", "ou": "Siirt Şeref Büryan" },
+    { "id": "balik-ekmek", "nom": "Balık ekmek", "description": "Sandwich au maquereau grillé, oignon et salade.", "ou": "Sur les quais d'Eminönü" },
+    { "id": "kumpir", "nom": "Kumpir", "description": "Grosse pomme de terre au four garnie de tout ce que tu veux.", "ou": "Place d'Ortaköy" },
+    { "id": "simit", "nom": "Simit", "description": "Anneau de pain au sésame, le petit-déjeuner de rue.", "ou": "Vendeurs ambulants partout, parfait sur le ferry" },
+    { "id": "kofte", "nom": "Köfte", "description": "Boulettes de bœuf grillées, avec piyaz (salade de haricots).", "ou": "Tarihi Sultanahmet Köftecisi" },
+    { "id": "kahvalti", "nom": "Serpme kahvaltı", "description": "Petit-déjeuner turc complet : fromages, olives, œufs, miel et crème, thé à volonté.", "ou": "Un matin sans visite tôt, à Balat ou Kadıköy" },
+    { "id": "menemen", "nom": "Menemen", "description": "Œufs brouillés à la tomate et au poivron, à saucer au pain.", "ou": "Dans tout café qui sert le petit-déjeuner" },
+    { "id": "lahmacun", "nom": "Lahmacun", "description": "Fine galette à la viande hachée épicée, à rouler avec persil et citron.", "ou": "En lokanta à Fatih" },
+    { "id": "pide", "nom": "Pide", "description": "Pain en forme de barque garni de fromage, viande ou œuf.", "ou": "En lokanta à Fatih" },
+    { "id": "iskender", "nom": "İskender kebap", "description": "Döner sur pain, sauce tomate, beurre fondu et yaourt.", "ou": "En kebapçı" },
+    { "id": "manti", "nom": "Mantı", "description": "Mini-raviolis à la viande, yaourt à l'ail et beurre pimenté.", "ou": "En lokanta, ou à Kadıköy" },
+    { "id": "midye", "nom": "Midye dolma", "description": "Moules farcies au riz épicé, un filet de citron.", "ou": "Vendeurs de rue à Kadıköy. Choisis un stand qui a du débit" },
+    { "id": "baklava", "nom": "Baklava", "description": "Feuilleté à la pistache et au sirop.", "ou": "Hafız Mustafa ou toute pâtisserie (baklavacı)" },
+    { "id": "salep", "nom": "Salep", "description": "Boisson chaude et épaisse au lait et à la cannelle, typique de l'hiver.", "ou": "Vendeurs de rue et cafés, idéal sur le ferry" },
+    { "id": "turk-kahvesi", "nom": "Türk kahvesi", "description": "Café turc non filtré. Ne bois pas le fond.", "ou": "En haut de Pierre Loti ou à Balat" },
+    { "id": "cay", "nom": "Çay", "description": "Thé noir en verre tulipe. On t'en offrira dans les boutiques.", "ou": "Partout, toute la journée" }
+  ],
+
+  "arnaques": [
+    { "titre": "Lecture des lignes de la main sur İstiklal", "texte": "Quelqu'un te prend la main « pour rire », puis réclame jusqu'à 1 500 TL.", "parade": "Garde les mains dans les poches, dis « Hayır » et continue de marcher." },
+    { "titre": "La brosse du cireur de chaussures", "texte": "Un cireur fait tomber sa brosse devant toi. Si tu la ramasses, il t'offre un cirage « gratuit » puis exige d'être payé.", "parade": "Ne ramasse rien, ne t'arrête pas." },
+    { "titre": "L'invitation au bar à Taksim", "texte": "Un inconnu sympathique te propose un verre dans un bar « local ». L'addition se compte en centaines d'euros.", "parade": "Refuse toute invitation d'un inconnu autour de Taksim et d'İstiklal. C'est toi qui choisis l'endroit." },
+    { "titre": "Taxis", "texte": "Compteur trafiqué, détours, échange de billets au moment de payer.", "parade": "Commande avec BiTaksi ou Uber. Sinon : « Taksimetre lütfen », petits billets, et annonce à voix haute le billet que tu donnes." },
+    { "titre": "Restaurants sans prix", "texte": "Carte sans tarifs, plats apportés sans être commandés, addition gonflée.", "parade": "Pas de prix affichés, pas de commande. Refuse ce que tu n'as pas demandé et relis l'addition." },
+    { "titre": "Paiement en euros sur le terminal", "texte": "Le terminal propose de te débiter en euros avec un taux très défavorable.", "parade": "Choisis toujours la livre turque (TRY)." },
+    { "titre": "Chawarma de nuit à Taksim", "texte": "Conseil du vlog : qualité douteuse en fin de soirée.", "parade": "Mange avant, ou dans une lokanta qui a du monde." },
+    { "titre": "Change à Taksim", "texte": "Les bureaux des zones touristiques prennent une marge plus forte.", "parade": "Change à Fatih, et compare le taux affiché avec celui de l'appli." }
+  ],
+
+  "urgences": [
+    { "nom": "Toutes urgences (ambulance, police, pompiers)", "numero": "112", "note": "Numéro unique en Turquie.", "source": "istanbul.com, dailysabah.com", "statut": "vérifié" },
+    { "nom": "Police touristique d'Istanbul", "numero": "+90 212 527 45 03", "note": "Unité dédiée aux visiteurs étrangers. Istanbul uniquement.", "source": "istanbul.com, dailysabah.com", "statut": "vérifié" },
+    { "nom": "Consulat général de France à Istanbul", "numero": null, "maps": "Consulat général de France, İstiklal Caddesi, Istanbul", "note": "Numéro d'urgence non trouvé : relève-le sur le site du consulat avant le départ.", "source": "aucune source trouvée", "statut": "à vérifier" },
+    { "nom": "Pharmacie de garde", "numero": null, "maps": "nöbetçi eczane Fatih Istanbul", "note": "Cherche « nöbetçi eczane ». Les pharmacies ont une enseigne rouge « Eczane ».", "source": "vlog fourni", "statut": "à vérifier" }
+  ],
+
+  "checklist": {
+    "avant": [
+      { "id": "papiers", "texte": "Vérifier la validité du passeport ou de la carte d'identité", "note": "Règles d'entrée à confirmer sur France Diplomatie." },
+      { "id": "croisiere", "texte": "Réserver la croisière dîner du mercredi 20" },
+      { "id": "billets", "texte": "Regarder les billets en ligne pour Sainte-Sophie, Topkapi et Dolmabahçe" },
+      { "id": "prix", "texte": "Demander à Claude de revérifier les prix début janvier", "note": "Les tarifs turcs augmentent souvent au 1er janvier." },
+      { "id": "aeroport", "texte": "Choisir le trajet Sabiha Gökçen - hôtel : métro ou taxi à quatre", "note": "Demande aussi à l'hôtel le prix de sa navette." },
+      { "id": "consulat", "texte": "Noter le numéro d'urgence du consulat de France" },
+      { "id": "assurance", "texte": "Vérifier l'assurance voyage et la couverture santé" },
+      { "id": "banque", "texte": "Prévenir la banque et vérifier les frais à l'étranger" },
+      { "id": "forfait", "texte": "Prévoir une eSIM ou un forfait Turquie", "note": "La Turquie est hors Union européenne : le roaming est payant." },
+      { "id": "maps", "texte": "Télécharger Istanbul hors ligne dans Google Maps" },
+      { "id": "applis", "texte": "Installer BiTaksi et ajouter ce carnet à l'écran d'accueil" },
+      { "id": "especes", "texte": "Retirer des euros en liquide à changer à Fatih" },
+      { "id": "copies", "texte": "Photographier passeport, billets et réservation d'hôtel" },
+      { "id": "checkin", "texte": "Faire l'enregistrement en ligne du vol" }
+    ],
+    "valise": [
+      { "id": "veste", "texte": "Veste imperméable et chaude" },
+      { "id": "couches", "texte": "Pulls et sous-couches" },
+      { "id": "chaussures", "texte": "Chaussures de marche qui supportent la pluie" },
+      { "id": "chaussettes", "texte": "Chaussettes en bon état", "note": "On se déchausse dans les mosquées." },
+      { "id": "bonnet", "texte": "Bonnet, gants, écharpe", "note": "Vent froid sur les ferries." },
+      { "id": "parapluie", "texte": "Petit parapluie" },
+      { "id": "batterie", "texte": "Batterie externe et câble" },
+      { "id": "chargeur", "texte": "Chargeur", "note": "Prises turques compatibles avec les prises françaises, à confirmer." },
+      { "id": "sac", "texte": "Petit sac à dos ou banane qui ferme bien" },
+      { "id": "pharmacie", "texte": "Médicaments de base et pansements" },
+      { "id": "papiers", "texte": "Passeport ou carte d'identité, carte bancaire" },
+      { "id": "place", "texte": "De la place dans la valise pour les achats" }
+    ]
+  },
+
+  "budget": {
+    "devise": "EUR",
+    "prevu": null,
+    "categories": ["Repas", "Visites", "Transport", "Shopping", "Sorties", "Autre"]
+  }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validation…</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; background: #0a0b0d; color: #f3f4f6; margin: 0; padding: 20px; max-width: 760px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; margin: 24px 0 6px; }
+    .ok { color: #5fcf8f; } .ko { color: #f07070; } .av { color: #f2b655; }
+    li { margin: 3px 0; }
+  </style>
+</head>
+<body>
+  <!-- Ouvre cette page via le serveur local : http://localhost:8123/tools/validate.html
+       Le titre de l'onglet devient "VALIDE" ou "ERREURS". -->
+  <h1>Validation des carnets</h1>
+  <div id="resultat">Vérification en cours…</div>
+  <script type="module">
+    import { validerVoyage } from '../js/validate.js';
+
+    const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    const sortie = document.getElementById('resultat');
+    let html = '';
+    let totalErreurs = 0;
+
+    try {
+      const index = await (await fetch('../trips/index.json', { cache: 'no-store' })).json();
+      const ids = new Set();
+      for (const fiche of index.voyages) {
+        let resultat;
+        try {
+          const voyage = await (await fetch('../trips/' + fiche.fichier, { cache: 'no-store' })).json();
+          resultat = validerVoyage(voyage, fiche);
+        } catch (erreur) {
+          resultat = { erreurs: ['Fichier illisible ou JSON invalide : ' + erreur.message], avertissements: [] };
+        }
+        if (ids.has(fiche.id)) resultat.erreurs.push('id en double dans index.json');
+        ids.add(fiche.id);
+        totalErreurs += resultat.erreurs.length;
+        html += `<h2>${esc(fiche.fichier)} : <span class="${resultat.erreurs.length ? 'ko' : 'ok'}">${resultat.erreurs.length ? resultat.erreurs.length + ' erreur(s)' : 'valide'}</span></h2>`;
+        html += '<ul>' + resultat.erreurs.map((e) => `<li class="ko">${esc(e)}</li>`).join('') + '</ul>';
+        html += `<p class="av">${resultat.avertissements.length} avertissement(s)</p>`;
+        html += '<ul>' + resultat.avertissements.map((a) => `<li class="av">${esc(a)}</li>`).join('') + '</ul>';
+      }
+    } catch (erreur) {
+      totalErreurs += 1;
+      html += `<p class="ko">index.json illisible : ${esc(erreur.message)}</p>`;
+    }
+
+    sortie.innerHTML = html;
+    document.title = totalErreurs ? 'ERREURS' : 'VALIDE';
+    window.resultatValidation = { erreurs: totalErreurs };
+  </script>
+</body>
+</html>
