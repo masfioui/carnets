@@ -22,6 +22,9 @@ js/lieu.js              fiche d'un lieu
 js/calendrier.js        export des rappels en fichier .ics (pas de notifications push : pas de serveur)
 js/feuille.js           panneau du bas, toast, saisie d'un nombre
 js/effets.js            vibration (astuce iPhone) et confettis de fin de journée
+js/coffre.js            déchiffre les carnets privés (trips/coffre.json) avec le code tapé
+tools/chiffrer.ps1      chiffre prive/ vers trips/coffre.json
+prive/                  carnets privés en clair, JAMAIS publiés (dans .gitignore)
 js/views/*.js           un fichier par écran : rendre(ctx), monter(racine, ctx), actions
 js/validate.js          validateur du schéma
 tools/validate.html     page qui valide tous les voyages
@@ -61,6 +64,7 @@ La commande `/nouveau-voyage` déroule ce processus. Résumé :
 Le validateur `js/validate.js` fait foi. Champs principaux :
 
 - En-tête : `schema` (1), `id`, `nom`, `pays`, `ville`, `dates {debut, fin}`, `accent`, `voyageurs`, `majLe`.
+- `villes[]` (facultatif) : les autres villes d'un voyage à étapes (ex. `ville: "Lisbonne"`, `villes: ["Porto", "Sintra"]`). Le validateur accepte alors un champ `maps` qui contient `ville` ou l'une des `villes`. Un voyage à étapes reste un seul carnet : les jours se suivent, un seul budget, une seule checklist.
 - `devise {code, symbole, nom, taux, date, source}` : `taux` = unités locales pour 1 euro.
 - `langue {code, nom}` : code du type `tr-TR`, utilisé par la synthèse vocale.
 - `logement {nom, adresse, maps, note, phraseTaxi? {local, fr}}` : `phraseTaxi` est la phrase « je voudrais aller à cette adresse » dans la langue locale, affichée en gros par le bouton « Montrer au chauffeur ».
@@ -85,6 +89,17 @@ Le validateur `js/validate.js` fait foi. Champs principaux :
 - **Regarder chaque photo** avant de publier : l'image principale d'un article de quartier montre parfois un autre endroit. Dans ce cas, supprimer le fichier, la ligne `photo` et l'entrée de `sources.json`. Mieux vaut pas de photo qu'une photo du mauvais lieu.
 - Pas de photo pour les restaurants et commerces sans article : ne pas en chercher ailleurs.
 - `couverture` (à la racine du voyage, et facultatif sur un jour) = `id` d'un lieu avec photo, utilisé comme image de la carte d'accueil ou de l'en-tête du jour. Sans `couverture`, un jour prend la photo de son premier lieu qui en a une.
+
+## Carnets privés (coffre)
+
+L'appli est partagée avec des amis : certains carnets ne doivent être visibles que du propriétaire. Comme tout ce qui est publié est public (GitHub Pages et dépôt), un carnet privé est **chiffré** avant d'être publié.
+
+- En clair, il vit dans `prive/` : `prive/<id>.json`, `prive/images/<id>/*.jpg`, et `prive/index.json` (même format que `trips/index.json`, sert au validateur). Ce dossier est dans `.gitignore`. **Ne jamais** mettre un carnet privé dans `trips/` ni dans `trips/index.json`, ne jamais le nommer dans un message de commit, ne jamais commiter `prive/`.
+- `tools\chiffrer.ps1` chiffre tous les carnets de `prive/` (photos comprises) dans `trips/coffre.json`, le seul fichier publié. Il demande le code ; le code du propriétaire est dans `prive/code.txt`. À relancer après chaque modification d'un carnet privé, avec le même code (`-Code (Get-Content prive\code.txt)`), puis commiter `trips/coffre.json`.
+- Dans l'appli : appui long sur le logo de l'accueil, puis le code. Le code est retenu sur le téléphone (localStorage, clé `carnets.coffre`, à part de `carnets.v1`). Le même geste permet de reverrouiller. Sans code, rien n'indique qu'un carnet privé existe.
+- Technique : PBKDF2-SHA256 (310 000 tours) donne deux clés, AES-256-CBC chiffre, HMAC-SHA256 signe. `js/coffre.js` fait l'inverse avec `crypto.subtle`. Les photos sont dans le bloc chiffré (`voyage.photosIntegrees`, lu par `photoLieu` dans `js/util.js`).
+- Créer un carnet privé : même processus que « Créer un nouveau voyage », mais écrire dans `prive/`, lancer `tools\photos.ps1 -Voyage <id> -Prive`, valider (la page de validation contrôle aussi `prive/`), chiffrer, tester en tapant le code, puis commiter seulement `trips/coffre.json`.
+- Un code perdu ne se récupère pas : le fichier en clair dans `prive/` est la seule copie lisible. Il n'est pas sauvegardé par git.
 
 ## Service worker
 

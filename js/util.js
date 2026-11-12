@@ -12,7 +12,10 @@ export const mapsUrl = (recherche) =>
 
 // Adresse de la photo d'un lieu. Convention : un lieu qui a un champ "photo"
 // dans le JSON a son image dans images/<voyage>/<lieu>.jpg. Renvoie '' sinon.
-export const photoLieu = (voyage, lieu) => (lieu && lieu.photo ? `images/${voyage.id}/${lieu.id}.jpg` : '');
+// Carnet privé : la photo vient du coffre (voyage.photosIntegrees, voir js/coffre.js).
+export const photoLieu = (voyage, lieu) => (lieu && lieu.photo
+  ? (voyage.photosIntegrees ? voyage.photosIntegrees[lieu.id] || '' : `images/${voyage.id}/${lieu.id}.jpg`)
+  : '');
 
 // Dates au format "2027-01-17", toujours en heure locale du téléphone.
 export function dateISO(d = new Date()) {

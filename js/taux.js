@@ -14,12 +14,15 @@ export function tauxCourant(voyage, etat) {
 // Frankfurter : API gratuite, sans clé, qui publie des taux de référence quotidiens.
 export async function actualiserTaux(voyage, etat) {
   const code = voyage.devise.code;
-  const reponse = await fetch(`https://api.frankfurter.dev/v1/latest?base=EUR&symbols=${code}`, { cache: 'no-store' });
+  // Version 2 de l'API : elle connaît plus de monnaies que la version 1
+  // et répond par une liste [{ date, base, quote, rate }].
+  const reponse = await fetch(`https://api.frankfurter.dev/v2/rates?base=EUR&quotes=${code}`, { cache: 'no-store' });
   if (!reponse.ok) throw new Error('Réponse ' + reponse.status);
   const json = await reponse.json();
-  const valeur = json.rates && json.rates[code];
+  const ligne = Array.isArray(json) ? json.find((l) => l.quote === code) : null;
+  const valeur = ligne && ligne.rate;
   if (!valeur) throw new Error('Devise absente de la réponse');
-  etat.taux = { valeur, date: json.date, source: 'Frankfurter (taux de référence)', manuel: false, recupere: Date.now() };
+  etat.taux = { valeur, date: ligne.date, source: 'Frankfurter (taux de référence)', manuel: false, recupere: Date.now() };
   return etat.taux;
 }
 

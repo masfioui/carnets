@@ -11,13 +11,19 @@
 # domaine public). Sinon le lieu reste sans photo : on n'en invente pas.
 # (Pas d'accents dans ce fichier : PowerShell 5 les lit mal sans BOM.)
 
-param([Parameter(Mandatory = $true)][string]$Voyage)
+# Carnet prive : ajouter -Prive. Le script travaille alors dans prive/ (prive/<voyage>.json
+# et prive/images/<voyage>/), puis il faut relancer tools\chiffrer.ps1.
+param([Parameter(Mandatory = $true)][string]$Voyage, [switch]$Prive)
 
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $racine = Split-Path -Parent $PSScriptRoot
 $dossier = Join-Path $racine "images\$Voyage"
 $fichierVoyage = Join-Path $racine "trips\$Voyage.json"
+if ($Prive) {
+  $dossier = Join-Path $racine "prive\images\$Voyage"
+  $fichierVoyage = Join-Path $racine "prive\$Voyage.json"
+}
 $agent = 'CarnetsPhotoFetcher/1.0 (static travel notebook; one-off script)'
 $utf8 = New-Object System.Text.UTF8Encoding($false)
 

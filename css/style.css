@@ -443,7 +443,9 @@ svg { display: block; flex: none; }
 
 /* --- Logo sur l'accueil --- */
 .accueil-tete { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-.logo { width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--trait); margin-bottom: 4px; }
+.logo { width: 52px; height: 52px; border-radius: 14px; border: 1px solid var(--trait); margin-bottom: 4px;
+  /* l'appui long sur le logo ouvre le coffre : pas de menu ni de sélection */
+  -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
 
 /* --- Réglage iPhone "Réduire les animations" : on coupe tout --- */
 @media (prefers-reduced-motion: reduce) {

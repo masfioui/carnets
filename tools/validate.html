@@ -25,18 +25,19 @@
     let html = '';
     let totalErreurs = 0;
 
-    try {
-      const index = await (await fetch('../trips/index.json', { cache: 'no-store' })).json();
-      const ids = new Set();
+    const ids = new Set();
+
+    // Valide tous les carnets listés dans <dossier>index.json.
+    async function validerDossier(dossier, images, index) {
       for (const fiche of index.voyages) {
         let resultat;
         try {
-          const voyage = await (await fetch('../trips/' + fiche.fichier, { cache: 'no-store' })).json();
+          const voyage = await (await fetch(dossier + fiche.fichier, { cache: 'no-store' })).json();
           resultat = validerVoyage(voyage, fiche);
           // Chaque lieu qui annonce une photo doit avoir son fichier image.
           for (const lieu of voyage.lieux.filter((l) => l.photo)) {
-            const reponse = await fetch(`../images/${voyage.id}/${lieu.id}.jpg`, { method: 'HEAD', cache: 'no-store' });
-            if (!reponse.ok) resultat.erreurs.push(`lieu « ${lieu.id} » : fichier images/${voyage.id}/${lieu.id}.jpg introuvable`);
+            const reponse = await fetch(`${images}${voyage.id}/${lieu.id}.jpg`, { method: 'HEAD', cache: 'no-store' });
+            if (!reponse.ok) resultat.erreurs.push(`lieu « ${lieu.id} » : fichier ${voyage.id}/${lieu.id}.jpg introuvable`);
           }
         } catch (erreur) {
           resultat = { erreurs: ['Fichier illisible ou JSON invalide : ' + erreur.message], avertissements: [] };
@@ -49,9 +50,26 @@
         html += `<p class="av">${resultat.avertissements.length} avertissement(s)</p>`;
         html += '<ul>' + resultat.avertissements.map((a) => `<li class="av">${esc(a)}</li>`).join('') + '</ul>';
       }
+    }
+
+    try {
+      const index = await (await fetch('../trips/index.json', { cache: 'no-store' })).json();
+      await validerDossier('../trips/', '../images/', index);
     } catch (erreur) {
       totalErreurs += 1;
       html += `<p class="ko">index.json illisible : ${esc(erreur.message)}</p>`;
+    }
+
+    // Carnets privés : le dossier prive/ n'existe que sur l'ordinateur (il n'est pas publié).
+    try {
+      const reponse = await fetch('../prive/index.json', { cache: 'no-store' });
+      if (reponse.ok) {
+        html += '<h1 style="margin-top:32px">Carnets privés</h1>';
+        await validerDossier('../prive/', '../prive/images/', await reponse.json());
+      }
+    } catch (erreur) {
+      totalErreurs += 1;
+      html += `<p class="ko">prive/index.json illisible : ${esc(erreur.message)}</p>`;
     }
 
     sortie.innerHTML = html;

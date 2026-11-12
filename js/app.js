@@ -13,6 +13,7 @@ import { ouvrirCalendrier } from './calendrier.js';
 import { ouvrirLieu, ouvrirChauffeur } from './lieu.js';
 import { vibrer } from './effets.js';
 import { actualiserTaux, tauxPerime } from './taux.js';
+import * as coffre from './coffre.js';
 import * as accueil from './views/accueil.js';
 import * as jours from './views/jours.js';
 import * as lieux from './views/lieux.js';
@@ -47,7 +48,42 @@ async function charger() {
       console.warn('Voyage illisible : ' + fiche.fichier, erreur);
     }
   }));
+  // Carnets privés : seulement si ce téléphone a déjà retenu le code du coffre.
+  const code = coffre.codeEnregistre();
+  if (code) ajouterPrives(await coffre.ouvrirCoffre(code));
 }
+
+// Les carnets privés ne sont pas dans trips/index.json : ils sortent du coffre
+// (js/coffre.js) une fois déchiffrés. On les ajoute alors à la liste comme les autres.
+const prives = new Set(); // ids des carnets privés ouverts
+
+function ajouterPrives(ouverts) {
+  for (const { voyage, photos } of ouverts) {
+    voyage.photosIntegrees = photos || {}; // les photos voyagent dans le coffre, pas dans images/
+    if (!voyages[voyage.id]) {
+      index.voyages.push({
+        id: voyage.id, nom: voyage.nom, pays: voyage.pays,
+        debut: voyage.dates.debut, fin: voyage.dates.fin, accent: voyage.accent, prive: true,
+      });
+    }
+    voyages[voyage.id] = voyage;
+    prives.add(voyage.id);
+  }
+  return ouverts.length;
+}
+
+// Ce que l'accueil peut faire avec le coffre (appui long sur le logo).
+const accesCoffre = {
+  get ouvert() { return prives.size > 0; },
+  // Renvoie le nombre de carnets ouverts par ce code (0 = mauvais code).
+  deverrouiller: async (code) => ajouterPrives(await coffre.ouvrirCoffre(code, true)),
+  verrouiller() {
+    coffre.oublierCode();
+    for (const id of prives) delete voyages[id];
+    index.voyages = index.voyages.filter((fiche) => !prives.has(fiche.id));
+    prives.clear();
+  },
+};
 
 function lireAdresse() {
   const [, type, id, onglet] = location.hash.split('/');
@@ -76,7 +112,7 @@ function afficher(anime = false) {
 
   if (!adresse) {
     vueCourante = accueil;
-    ctx = { index, voyages, store, rendre: () => afficher() };
+    ctx = { index, voyages, store, coffre: accesCoffre, rendre: () => afficher() };
     document.documentElement.style.removeProperty('--accent');
     barre.hidden = true;
     racine.classList.toggle('entree', anime);

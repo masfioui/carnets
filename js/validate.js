@@ -42,6 +42,13 @@ export function validerVoyage(v, fiche) {
     exiger(texte(v.logement.phraseTaxi.local) && texte(v.logement.phraseTaxi.fr), 'logement.phraseTaxi : local et fr requis');
   }
 
+  // villes (facultatif) : les autres villes d'un voyage à étapes (ex. Lisbonne puis Porto).
+  // La recherche maps d'un lieu doit alors contenir « ville » ou l'une de ces « villes ».
+  if (v.villes !== undefined) {
+    exiger(Array.isArray(v.villes) && v.villes.every(texte), 'villes : liste de noms de villes (facultatif)');
+  }
+  const villesAdmises = [v.ville, ...(Array.isArray(v.villes) ? v.villes : [])].filter(texte).map((x) => x.toLowerCase());
+
   // --- Lieux ---
   exiger(Array.isArray(v.lieux) && v.lieux.length > 0, 'lieux : liste vide');
   const idsLieux = uniques((v.lieux ?? []).map((l) => l.id), 'lieux');
@@ -50,8 +57,8 @@ export function validerVoyage(v, fiche) {
     exiger(texte(l.nom), `${ou} : nom manquant`);
     exiger(CATEGORIES.includes(l.categorie), `${ou} : catégorie inconnue « ${l.categorie} »`);
     exiger(texte(l.maps), `${ou} : champ maps manquant (recherche « nom, ville »)`);
-    if (texte(l.maps) && texte(v.ville) && !l.maps.toLowerCase().includes(v.ville.toLowerCase())) {
-      avertissements.push(`${ou} : la recherche maps ne contient pas la ville « ${v.ville} »`);
+    if (texte(l.maps) && villesAdmises.length && !villesAdmises.some((ville) => l.maps.toLowerCase().includes(ville))) {
+      avertissements.push(`${ou} : la recherche maps ne contient aucune des villes du voyage (${[v.ville, ...(v.villes ?? [])].join(', ')})`);
     }
     exiger(!('lat' in l) && !('lng' in l) && !('coords' in l), `${ou} : pas de coordonnées, seulement une recherche par nom`);
     if (l.prix) {

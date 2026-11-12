@@ -8,7 +8,7 @@
 // Conséquence : après un déploiement, il faut ouvrir l'appli deux fois pour voir la nouveauté.
 //
 // Change ce numéro quand la liste SOCLE ci-dessous change.
-const CACHE = 'carnets-v6';
+const CACHE = 'carnets-v7';
 
 const SOCLE = [
   './',
@@ -24,6 +24,7 @@ const SOCLE = [
   'js/lieu.js',
   'js/calendrier.js',
   'js/effets.js',
+  'js/coffre.js',
   'js/views/accueil.js',
   'js/views/jours.js',
   'js/views/lieux.js',
@@ -44,6 +45,8 @@ async function toutMettreEnCache() {
   await cache.addAll(SOCLE);
   const index = await (await fetch('trips/index.json')).json();
   await cache.addAll(index.voyages.map((fiche) => 'trips/' + fiche.fichier));
+  // Le coffre des carnets privés (chiffré, photos comprises). Facultatif.
+  await cache.add('trips/coffre.json').catch(() => null);
 
   // Les photos : on lit chaque carnet pour savoir quels lieux en ont une.
   // Une photo qui échoue ne doit pas empêcher l'installation, d'où le catch.
